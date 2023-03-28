@@ -4,14 +4,15 @@
   "description": "african art music tv",
   "main": "app.js",
   "scripts": {
-    "start:dev": "cross-env NODE_ENV=development node server.js",
-    "start:prod": "cross-env NODE_ENV=production node server.js"
+    "start": "cross-env NODE_ENV=development nodemon server.js",
+    "start:prod": "cross-env NODE_ENV=production nodemon server.js"
   },
   "author": "oriade",
   "license": "ISC",
   "dependencies": {
     "dotenv": "^16.0.3",
     "express": "^4.18.2",
+    "mongoose": "^5.13.16",
     "morgan": "^1.10.0",
     "slugify": "^1.6.6"
   },

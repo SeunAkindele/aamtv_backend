@@ -11,11 +11,11 @@ const router = express.Router();
 
 router.route('/')
     .get(videoController.getVideos)
-    // .post(createVideo);
+    .post(videoController.createVideo);
 
 router.route('/:id')
     .get(videoController.getVideo)
-    // .patch(updateVideo)
-    // .delete(deleteVideo)
+    .patch(videoController.updateVideo)
+    .delete(videoController.deleteVideo)
 
 module.exports = router;
