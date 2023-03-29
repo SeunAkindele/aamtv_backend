@@ -2,7 +2,18 @@ const Video = require('./../models/videoModel');
 
 exports.getVideos = async (req, res) => {
     try{
-        const videos = await Video.find();
+        
+        const skip = parseInt(req.query.skip);
+
+        let query = Video.find();
+
+        // skip & limit for lazy loader
+        query = query.skip(skip).limit(50);
+
+        // sort by time in descending order
+        query = query.sort({createdAt: -1});
+
+        const videos = await query;
 
         res.status(200).json({
             status: 'success',

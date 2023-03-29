@@ -18,5 +18,13 @@ mongoose.connect(DB, {
 
 const port = process.env.PORT;
 app.listen(port, () => {
-    console.log(`App running on port ${port}...`);
+    console.log(`aamtv app running on port ${port}...`);
 });
+
+/*
+ 
+    5198 9940 4513 9214
+    11/27
+    759
+
+ */
