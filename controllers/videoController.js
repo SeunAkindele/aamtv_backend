@@ -1,19 +1,13 @@
 const Video = require('./../models/videoModel');
+const APIFeatures = require('../utils/apiFeatures');
 
 exports.getVideos = async (req, res) => {
     try{
-        
-        const skip = parseInt(req.query.skip);
+        const features = new APIFeatures(Video.find(), req.query)
+        .lazyLoader()
+        .sortByTime();
 
-        let query = Video.find();
-
-        // skip & limit for lazy loader
-        query = query.skip(skip).limit(50);
-
-        // sort by time in descending order
-        query = query.sort({createdAt: -1});
-
-        const videos = await query;
+        const videos = await features.query;
 
         res.status(200).json({
             status: 'success',
