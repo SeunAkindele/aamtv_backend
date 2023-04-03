@@ -3,17 +3,22 @@ const AppError = require("../utils/appError");
 const handleDuplicateFieldsDB = err => {
     let prop = Object.keys(err.keyValue)[0];    
     let value = err.keyValue[prop] || 'Value';
-    const message = `${value} already exist, please use another ${prop}`;
+    const message = `${value} already exist, please kindly use another ${prop}`;
     
     return new AppError(message, 400);
 }
 
 const handleValidationErrorDB = err => {
-    if(err.errors.title.properties.message){
-        const message = `Invalid input data: ${err.errors.title.properties.message}`;
-        return new AppError(message, 400);
-    }
+    let prop = Object.keys(err.errors)[0];  
+    let value = err.errors[prop].message ? `: ${err.errors[prop].message}` : '';
+    const message = `Invalid input data${value}`;
+
+    return new AppError(message, 400);
 }
+
+const handleJWTError = () => new AppError('Invalid token. Please log in again', 401);
+
+const handleJWTExpiredError = () => new AppError('Your token has expired! Please log in again.', 401);
 
 const sendErrorDev = (err, res) => {
     res.status(err.statusCode).json({
@@ -58,7 +63,9 @@ module.exports = (err, req, res, next) => {
 
         if(error.code === 11000) error = handleDuplicateFieldsDB(error);
         if(error.name === 'ValidationError') error = handleValidationErrorDB(error);
-        
+        if(error.name === 'JsonWebTokenError') error = handleJWTError();
+        if(error.name === 'TokenExpiredError') error = handleJWTExpiredError();
+
         sendErrorProd(error, res);
     }
 };
