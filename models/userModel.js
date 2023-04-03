@@ -52,6 +52,7 @@ userSchema.methods.correctPassword = async function(candidatePassword, userPassw
     return await bcrypt.compare(candidatePassword, userPassword);
 };
 
+// checking if password has been changed after token was issued
 userSchema.methods.changedPasswordAfter = function(JWTTimestamp) {
     if(this.passwordChangedAt) {
         const changedTimestamp = parseInt(this.passwordChangedAt.getTime() / 1000, 10);
