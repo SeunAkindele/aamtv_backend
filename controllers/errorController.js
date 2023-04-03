@@ -1,8 +1,10 @@
 const AppError = require("../utils/appError");
 
 const handleDuplicateFieldsDB = err => {
-    let value = err.keyValue.title || 'Value'
-    const message = `${value} already exist, please use another value`;
+    let prop = Object.keys(err.keyValue)[0];    
+    let value = err.keyValue[prop] || 'Value';
+    const message = `${value} already exist, please use another ${prop}`;
+    
     return new AppError(message, 400);
 }
 
