@@ -7,11 +7,15 @@ const router = express.Router();
 
 router.route('/')
     .get(authController.protect, videoController.getVideos)
-    .post(videoController.createVideo);
+    .post(authController.protect, authController.restrictTo('admin'), videoController.createVideo);
 
 router.route('/:id')
-    .get(videoController.getVideo)
-    .patch(videoController.updateVideo)
-    .delete(videoController.deleteVideo)
+    .get(authController.protect, videoController.getVideo)
+    .patch(authController.protect, authController.restrictTo('admin'), videoController.updateVideo)
+    .delete(
+        authController.protect,
+        authController.restrictTo('admin'), 
+        videoController.deleteVideo
+    );
 
 module.exports = router;
