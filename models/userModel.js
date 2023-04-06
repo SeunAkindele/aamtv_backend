@@ -46,6 +46,10 @@ const userSchema = new mongoose.Schema({
         enum: ['user', 'artist', 'admin'],
         default: 'user'
     },
+    active: {
+        type: Boolean,
+        default: true
+    },
     passwordResetToken: String,
     passwordResetExpires: Date
 });
@@ -71,6 +75,14 @@ userSchema.methods.correctPassword = async function(candidatePassword, userPassw
     return await bcrypt.compare(candidatePassword, userPassword);
 };
 
+userSchema.methods.checkActive = function() {
+    if(!this.active || this.disabled) {
+        return true;
+    } 
+
+    return false;
+};
+
 // checking if password has been changed after token was issued
 userSchema.methods.changedPasswordAfter = function(JWTTimestamp) {
     if(this.passwordChangedAt) {
@@ -89,8 +101,6 @@ userSchema.methods.createPasswordResetToken = function() {
     .createHash('sha256')
     .update(resetToken)
     .digest('hex');
-
-    // console.log({resetToken}, this.passwordResetToken);
 
     // setting the password reset to expire in 10min
     this.passwordResetExpires = Date.now() + 5 * 60 * 1000;
