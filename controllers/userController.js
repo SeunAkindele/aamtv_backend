@@ -1,31 +1,17 @@
 const User = require('../models/userModel');
 const catchAsync = require('../utils/catchAsync');
 const AppError = require('../utils/appError');
+const factory = require('./handlerFactory');
 
-exports.getUsers = catchAsync( async (req, res, next) => {
-    const users = await User.find(
-        {
-            role: {$ne: 'admin'},
-            active: {$ne: false}, 
-            disabled: {$ne: true}
-        }
-    );
-
-    res.status(200).json({
-        status: 'success',
-        results: users.length,
-        data: {
-            users
-        }
-    });
-});
-
-exports.getUser = (req, res) => {
-    res.status(500).json({
-        status: 'error',
-        message: 'This route does not exist'
-    });
+const validationObject = {
+    role: {$ne: 'admin'},
+    active: {$ne: false}, 
+    disabled: {$ne: true}
 };
+
+exports.getUsers = factory.getAll(User, validationObject);
+
+exports.getUser = factory.getOne(User);
 
 const filterObj = (obj, ...allowedFields) => {
     const newObj = {};
@@ -36,6 +22,10 @@ const filterObj = (obj, ...allowedFields) => {
     return newObj;
 };
 
+exports.getMe = (req, res, next) => {
+    req.params.id = req.user.id;
+    next();
+}
 
 exports.updateMe = async (req, res, next) => {
     // Create error if user tries to update password
@@ -67,3 +57,7 @@ exports.deleteMe = catchAsync(async(req, res, next) => {
         data: null
     });
 });
+
+exports.updateUser = factory.updateOne(User);
+
+exports.deleteUser = factory.deleteOne(User);

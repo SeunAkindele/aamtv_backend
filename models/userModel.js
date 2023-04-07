@@ -37,6 +37,10 @@ const userSchema = new mongoose.Schema({
         type: Date,
         default: Date.now()
     },
+    createdAt: {
+        type: Date,
+        default: Date.now()
+    },
     disabled: {
         type: Boolean,
         default: false
@@ -52,6 +56,10 @@ const userSchema = new mongoose.Schema({
     },
     passwordResetToken: String,
     passwordResetExpires: Date
+},
+{
+    toJSON: { virtuals: true },
+    toObject: { virtuals: true }
 });
 
 userSchema.pre('save', async function(next) {
@@ -69,6 +77,15 @@ userSchema.pre('save', function(next) {
     this.passwordChangedAt = Date.now() - 1000;
     next();
 });
+
+// Embedding artists into user
+// userSchema.pre('save', async function(next) {
+//     const artistsPromises = this.artists.map(async id => User.findById(id));
+//     this.artists = await artistsPromises;
+//     next();
+// });
+
+
 
 // current user document being queried has access to this function
 userSchema.methods.correctPassword = async function(candidatePassword, userPassword) {

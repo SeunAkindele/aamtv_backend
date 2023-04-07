@@ -29,7 +29,12 @@ const videoSchema = new mongoose.Schema({
         type: Boolean,
         default: false
     }
-});
+},
+{
+    toJSON: { virtuals: true },
+    toObject: { virtuals: true }
+}
+);
 
 // DOCUMENT MIDDLEWARE: runs before saving into the db
 videoSchema.pre('save', function(next) {
@@ -38,6 +43,13 @@ videoSchema.pre('save', function(next) {
     this.slug = slugify(this.title, {lower: true});
     next();
 });
+
+// // Virtual populate
+// videoSchema.virtual('comments', {
+//     ref: 'Comment',
+//     foreignField: 'video',
+//     localField: '_id'
+// });
 
 // runs immediately after the document is saved
 videoSchema.post('save', function(doc, next) {
