@@ -1,19 +1,17 @@
 const mongoose = require('mongoose');
 
-likeSchema = new mongoose.Schema({
+viewSchema = new mongoose.Schema({
     createdAt: {
         type: Date,
         default: Date.now()
     },
     video: {
         type: mongoose.Schema.ObjectId,
-        ref: 'Video',
-        required: [true, 'Like must belong to a video']
+        ref: 'Video'
     },
     user: {
         type: mongoose.Schema.ObjectId,
-        ref: 'User',
-        required: [true, 'Like must belong to a user']
+        ref: 'User'
     }
 },
 {
@@ -22,6 +20,6 @@ likeSchema = new mongoose.Schema({
 }
 );
 
-const Like = mongoose.model('Like', likeSchema);
+const View = mongoose.model('View', viewSchema);
 
-module.exports = Like;
+module.exports = View;

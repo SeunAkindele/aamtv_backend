@@ -1,4 +1,4 @@
-const Like = require('../models/likeModel');
+const View = require('../models/viewModel');
 const catchAsync = require('../utils/catchAsync');
 const factory = require('./handlerFactory');
 
@@ -8,8 +8,6 @@ exports.setVideoUserIds = (req, res, next) => {
     next();
 }
 
-exports.like = factory.createOne(Like);
+exports.view = factory.createOne(View);
 
-exports.getLikes = factory.getCountIsExist(Like, "video");
-
-exports.unlike = factory.deleteOne(Like);
+exports.getViews = factory.getCountIsExist(View, "video");

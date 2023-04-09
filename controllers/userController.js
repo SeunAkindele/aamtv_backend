@@ -3,13 +3,13 @@ const catchAsync = require('../utils/catchAsync');
 const AppError = require('../utils/appError');
 const factory = require('./handlerFactory');
 
-const validationObject = {
-    role: {$ne: 'admin'},
-    active: {$ne: false}, 
-    disabled: {$ne: true}
-};
-
-exports.getUsers = factory.getAll(User, validationObject);
+exports.getUsers = factory.getAll(User, 
+    {
+        role: {$ne: 'admin'},
+        active: {$ne: false}, 
+        disabled: {$ne: true}
+    }
+);
 
 exports.getUser = factory.getOne(User);
 

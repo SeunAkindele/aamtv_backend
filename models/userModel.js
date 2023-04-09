@@ -54,6 +54,10 @@ const userSchema = new mongoose.Schema({
         type: Boolean,
         default: true
     },
+    expiryDate: {
+        type: Date,
+        default: Date.now()
+    },
     passwordResetToken: String,
     passwordResetExpires: Date
 },
@@ -66,7 +70,6 @@ userSchema.pre('save', async function(next) {
     if(!this.isModified('password')) return next();
 
     this.password = await bcrypt.hash(this.password, 12);
-
     this.passwordConfirm = undefined;
     next();
 });
@@ -85,17 +88,17 @@ userSchema.pre('save', function(next) {
 //     next();
 // });
 
-userSchema.virtual('followers', {
-    ref: 'Follower',
-    foreignField: 'artist',
-    localField: '_id'
-});
+// userSchema.virtual('followers', {
+//     ref: 'Follower',
+//     foreignField: 'artist',
+//     localField: '_id'
+// });
 
-userSchema.virtual('followings', {
-    ref: 'Follower',
-    foreignField: 'user',
-    localField: '_id'
-});
+// userSchema.virtual('followings', {
+//     ref: 'Follower',
+//     foreignField: 'user',
+//     localField: '_id'
+// });
 
 // current user document being queried has access to this function
 userSchema.methods.correctPassword = async function(candidatePassword, userPassword) {
