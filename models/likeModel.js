@@ -8,9 +8,15 @@ likeSchema = new mongoose.Schema({
         type: Date,
         default: Date.now()
     },
-    active: {
-        type: Boolean,
-        default: true
+    video: {
+        type: mongoose.Schema.ObjectId,
+        ref: 'Video',
+        required: [true, 'Like must belong to a video']
+    },
+    user: {
+        type: mongoose.Schema.ObjectId,
+        ref: 'User',
+        required: [true, 'Like must belong to a user']
     }
 },
 {

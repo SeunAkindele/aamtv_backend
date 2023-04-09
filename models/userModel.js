@@ -85,7 +85,17 @@ userSchema.pre('save', function(next) {
 //     next();
 // });
 
+userSchema.virtual('followers', {
+    ref: 'Follower',
+    foreignField: 'artist',
+    localField: '_id'
+});
 
+userSchema.virtual('followings', {
+    ref: 'Follower',
+    foreignField: 'user',
+    localField: '_id'
+});
 
 // current user document being queried has access to this function
 userSchema.methods.correctPassword = async function(candidatePassword, userPassword) {

@@ -71,5 +71,3 @@ videoSchema.post(/^find/, function(docs, next) {
 const Video = mongoose.model('Video', videoSchema);
 
 module.exports = Video;
-
-// Pluss123@

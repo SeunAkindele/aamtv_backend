@@ -1,6 +1,4 @@
 const Comment = require('../models/commentModel');
-const APIFeatures = require('../utils/apiFeatures');
-const catchAsync = require('../utils/catchAsync');
 const factory = require('./handlerFactory');
 
 exports.getComments = factory.getAll(Comment);

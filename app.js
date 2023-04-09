@@ -11,6 +11,7 @@ const globalErrorHandler = require('./controllers/errorController');
 const videoRouter = require('./routes/videoRoutes');
 const userRouter = require('./routes/userRoutes');
 const commentRouter = require('./routes/commentRoutes');
+const likeRouter = require('./routes/likeRoutes');
 
 // Initializes express
 const app = express();
@@ -52,6 +53,7 @@ app.use((req, res, next) => {
 app.use('/api/v1/videos', videoRouter);
 app.use('/api/v1/users', userRouter);
 app.use('/api/v1/comments', commentRouter);
+app.use('/api/v1/likes', likeRouter);
 
 app.all('*', (req, res, next) => {
     // express automatically see a next with parameter as an error, and then jumps all the middleware to the error middleware

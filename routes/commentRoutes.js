@@ -12,9 +12,7 @@ router.route('/:id')
         authController.restrictTo('artist', 'user'), 
         commentController.setVideoUserIds, 
         commentController.createComment
-    );
-
-router.route('/:id')
+    )
     .get(commentController.getComments)
     .patch(authController.restrictTo('artist', 'user'), commentController.updateComment)
     .delete(commentController.deleteComment);
