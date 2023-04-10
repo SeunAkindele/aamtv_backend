@@ -17,6 +17,8 @@ router.get('/me', userController.getMe, userController.getUser);
 router.patch('/updateMe', userController.updateMe);
 router.delete('/deleteMe', userController.deleteMe);
 
+router.get('/artists', userController.getArtists);
+
 router.route('/')
     .get(userController.getUsers);
 

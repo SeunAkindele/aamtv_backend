@@ -13,6 +13,7 @@ const userRouter = require('./routes/userRoutes');
 const commentRouter = require('./routes/commentRoutes');
 const likeRouter = require('./routes/likeRoutes');
 const viewRouter = require('./routes/viewRoutes');
+const followerRouter = require('./routes/followerRoutes');
 
 // Initializes express
 const app = express();
@@ -24,13 +25,13 @@ if(process.env.NODE_ENV === 'development') {
     app.use(morgan('dev'));
 }
 
+// Limits number of requests to a router withing a time frame of 1hr
 const limiter = rateLimit({
     max: 10,
     windowMs: 60 * 60 * 1000,
     message: 'Too many requets from this IP, please try again in an hour!'
 });
 
-// Limits number of requests to use router withing a time frame of 1hr
 // app.use('/api/v1/users/login', limiter);
 app.use('/api/v1/users/updatePassword', limiter);
 
@@ -57,6 +58,7 @@ app.use('/api/v1/users', userRouter);
 app.use('/api/v1/comments', commentRouter);
 app.use('/api/v1/likes', likeRouter);
 app.use('/api/v1/views', viewRouter);
+app.use('/api/v1/followers', followerRouter);
 
 app.all('*', (req, res, next) => {
     // express automatically see a next with parameter as an error, and then jumps all the middleware to the error middleware

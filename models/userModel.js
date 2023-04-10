@@ -3,68 +3,70 @@ const mongoose = require("mongoose");
 const validator = require('validator');
 const bcrypt = require('bcryptjs');
 
-const userSchema = new mongoose.Schema({
-    name: {
-        type: String,
-        required: [true, 'Please tell us your name']
+const userSchema = new mongoose.Schema(
+    {
+        name: {
+            type: String,
+            required: [true, 'Please tell us your name']
+        },
+        email: {
+            type: String,
+            required: [true, 'Please provide your email'],
+            unique: true,
+            lowercase: true,
+            validate: [validator.isEmail, 'Please provide a valid email']
+        },
+        photo: String,
+        password: {
+            type: String,
+            required: [true, 'Please provide a password'],
+            minLength: 8,
+            select: false
+        },
+        passwordConfirm: {
+            type: String,
+            required: [true, 'Please confirm your password'],
+            validate: {
+                // This only works with CREATE and SAVE
+                validator: function(el) {
+                    return el === this.password;
+                },
+                message: 'Passwords are not the same!'
+            }
+        },
+        passwordChangedAt: {
+            type: Date,
+            default: Date.now()
+        },
+        createdAt: {
+            type: Date,
+            default: Date.now()
+        },
+        disabled: {
+            type: Boolean,
+            default: false
+        },
+        role: {
+            type: String,
+            enum: ['user', 'artist', 'admin'],
+            default: 'user'
+        },
+        active: {
+            type: Boolean,
+            default: true
+        },
+        expiryDate: {
+            type: Date,
+            default: Date.now()
+        },
+        passwordResetToken: String,
+        passwordResetExpires: Date
     },
-    email: {
-        type: String,
-        required: [true, 'Please provide your email'],
-        unique: true,
-        lowercase: true,
-        validate: [validator.isEmail, 'Please provide a valid email']
-    },
-    photo: String,
-    password: {
-        type: String,
-        required: [true, 'Please provide a password'],
-        minLength: 8,
-        select: false
-    },
-    passwordConfirm: {
-        type: String,
-        required: [true, 'Please confirm your password'],
-        validate: {
-            // This only works with CREATE and SAVE
-            validator: function(el) {
-                return el === this.password;
-            },
-            message: 'Passwords are not the same!'
-        }
-    },
-    passwordChangedAt: {
-        type: Date,
-        default: Date.now()
-    },
-    createdAt: {
-        type: Date,
-        default: Date.now()
-    },
-    disabled: {
-        type: Boolean,
-        default: false
-    },
-    role: {
-        type: String,
-        enum: ['user', 'artist', 'admin'],
-        default: 'user'
-    },
-    active: {
-        type: Boolean,
-        default: true
-    },
-    expiryDate: {
-        type: Date,
-        default: Date.now()
-    },
-    passwordResetToken: String,
-    passwordResetExpires: Date
-},
-{
-    toJSON: { virtuals: true },
-    toObject: { virtuals: true }
-});
+    {
+        toJSON: { virtuals: true },
+        toObject: { virtuals: true }
+    }
+);
 
 userSchema.pre('save', async function(next) {
     if(!this.isModified('password')) return next();
@@ -81,6 +83,7 @@ userSchema.pre('save', function(next) {
     next();
 });
 
+
 // Embedding artists into user
 // userSchema.pre('save', async function(next) {
 //     const artistsPromises = this.artists.map(async id => User.findById(id));
@@ -88,17 +91,16 @@ userSchema.pre('save', function(next) {
 //     next();
 // });
 
-// userSchema.virtual('followers', {
-//     ref: 'Follower',
-//     foreignField: 'artist',
-//     localField: '_id'
-// });
+userSchema.virtual('followers', {
+    ref: 'Follower',
+    foreignField: 'artist',
+    localField: '_id',
+    count: true
+});
 
-// userSchema.virtual('followings', {
-//     ref: 'Follower',
-//     foreignField: 'user',
-//     localField: '_id'
-// });
+userSchema.virtual('following').get(function() {
+    console.log(this._id);
+});
 
 // current user document being queried has access to this function
 userSchema.methods.correctPassword = async function(candidatePassword, userPassword) {
