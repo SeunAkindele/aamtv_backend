@@ -3,7 +3,6 @@ const catchAsync = require('../utils/catchAsync');
 const AppError = require('../utils/appError');
 const factory = require('./handlerFactory');
 const APIFeatures = require('../utils/apiFeatures');
-const Follower = require('../models/followerModel');
 
 exports.getUsers = factory.getAll(User, 
     {
@@ -14,22 +13,6 @@ exports.getUsers = factory.getAll(User,
 );
 
 exports.getUser = factory.getOne(User);
-
-exports.getArtists = catchAsync( async (req, res, next) => {
-    const features = new APIFeatures(User.find({role: 'artist'}), req.query)
-    .lazyLoader()
-    .sortByTime();
-
-    const data = await features.query.populate('followers');
-
-    res.status(200).json({
-        status: 'success',
-        results: data.length,
-        data: {
-            data
-        }
-    });
-});
 
 const filterObj = (obj, ...allowedFields) => {
     const newObj = {};
@@ -79,3 +62,19 @@ exports.deleteMe = catchAsync(async(req, res, next) => {
 exports.updateUser = factory.updateOne(User);
 
 exports.deleteUser = factory.deleteOne(User);
+
+exports.getArtists = catchAsync( async (req, res, next) => {
+    const features = new APIFeatures(User.find({role: 'artist'}), req.query)
+    .lazyLoader()
+    .sortByTime();
+
+    const data = await features.query.populate('followers');
+
+    res.status(200).json({
+        status: 'success',
+        results: data.length,
+        data: {
+            data
+        }
+    });
+});

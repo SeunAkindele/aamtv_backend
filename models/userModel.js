@@ -2,6 +2,7 @@ const crypto = require('crypto');
 const mongoose = require("mongoose");
 const validator = require('validator');
 const bcrypt = require('bcryptjs');
+const Follower = require('./followerModel');
 
 const userSchema = new mongoose.Schema(
     {
@@ -98,9 +99,11 @@ userSchema.virtual('followers', {
     count: true
 });
 
-userSchema.virtual('following').get(function() {
-    console.log(this._id);
-});
+// userSchema.virtual('following', {
+//     ref: 'Follower',
+//     foreignField: 'artist',
+//     localField: '_id',
+// });
 
 // current user document being queried has access to this function
 userSchema.methods.correctPassword = async function(candidatePassword, userPassword) {
