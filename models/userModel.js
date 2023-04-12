@@ -2,7 +2,6 @@ const crypto = require('crypto');
 const mongoose = require("mongoose");
 const validator = require('validator');
 const bcrypt = require('bcryptjs');
-const Follower = require('./followerModel');
 
 const userSchema = new mongoose.Schema(
     {
@@ -16,6 +15,10 @@ const userSchema = new mongoose.Schema(
             unique: true,
             lowercase: true,
             validate: [validator.isEmail, 'Please provide a valid email']
+        },
+        country: {
+            type: String,
+            required: [true, 'Please provide your country'],
         },
         photo: String,
         password: {
