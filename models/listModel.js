@@ -20,6 +20,15 @@ listSchema = new mongoose.Schema({
 }
 );
 
+listSchema.pre(/^find/, function(next) {
+    this.populate({
+        path: 'video',
+        select: '-__v'
+    });
+
+    next();
+});
+
 const List = mongoose.model('List', listSchema);
 
 module.exports = List;

@@ -59,10 +59,6 @@ const userSchema = new mongoose.Schema(
             type: Boolean,
             default: true
         },
-        expiryDate: {
-            type: Date,
-            default: Date.now()
-        },
         passwordResetToken: String,
         passwordResetExpires: Date
     },

@@ -21,6 +21,11 @@ const videoSchema = new mongoose.Schema({
         required: [true, 'A video must have a thumbnail photo'],
         unique: true
     },
+    category: {
+        type: String,
+        enum: ['video', 'documentary', 'live'],
+        default: 'video'
+    },
     createdAt: {
         type: Date,
         default: Date.now()
