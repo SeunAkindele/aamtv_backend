@@ -26,6 +26,10 @@ const videoSchema = new mongoose.Schema({
         enum: ['video', 'documentary', 'live'],
         default: 'video'
     },
+    artist: {
+        type: mongoose.Schema.ObjectId,
+        ref: 'Follower'
+    },
     createdAt: {
         type: Date,
         default: Date.now()
