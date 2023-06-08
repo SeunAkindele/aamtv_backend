@@ -51,11 +51,13 @@ app.use(hpp());
 // Test middleware
 app.use((req, res, next) => {
     req.requestTime = new Date().toISOString();
+    const url = req.protocol + '://' + req.get('host') + req.originalUrl;
+    console.log('URL:', url);
     next();
 });
 
-app.use('/api/v1/videos', videoRouter);
 app.use('/api/v1/users', userRouter);
+app.use('/api/v1/videos', videoRouter);
 app.use('/api/v1/comments', commentRouter);
 app.use('/api/v1/likes', likeRouter);
 app.use('/api/v1/views', viewRouter);

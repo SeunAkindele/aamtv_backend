@@ -18,9 +18,12 @@ const userSchema = new mongoose.Schema(
         },
         country: {
             type: String,
-            required: [true, 'Please provide your country'],
+            required: [true, 'Please provide your country']
         },
-        photo: String,
+        phone: {
+            type: String,
+            required: [true, 'Please provide your phone number']
+        },
         password: {
             type: String,
             required: [true, 'Please provide a password'],
@@ -54,6 +57,36 @@ const userSchema = new mongoose.Schema(
             type: String,
             enum: ['user', 'artist', 'admin'],
             default: 'user'
+        },
+        skill: {
+            type: String,
+            validate: {
+                // This only works with CREATE and SAVE
+                validator: function() {
+                    return this.role !== 'artist' || (this.role === 'artist' && this.skill);
+                },
+                message: 'Please provide your skill'
+            }
+        },
+        photo: {
+            type: String,
+            validate: {
+                // This only works with CREATE and SAVE
+                validator: function() {
+                    return this.role !== 'artist' || (this.role === 'artist' && this.photo);
+                },
+                message: 'Please upload your photo'
+            }
+        },
+        introduction: {
+            type: String,
+            validate: {
+                // This only works with CREATE and SAVE
+                validator: function() {
+                    return this.role !== 'artist' || (this.role === 'artist' && this.introduction);
+                },
+                message: 'Please tell us just a little about yourself'
+            }
         },
         active: {
             type: Boolean,
@@ -109,6 +142,10 @@ userSchema.methods.correctPassword = async function(candidatePassword, userPassw
     return await bcrypt.compare(candidatePassword, userPassword);
 };
 
+userSchema.methods.correctOTP = async function(candidateOTP, userOTP) {
+    return await bcrypt.compare(candidateOTP, userOTP);
+};
+
 userSchema.methods.checkActive = function() {
     if(!this.active || this.disabled) {
         return true;
@@ -128,14 +165,11 @@ userSchema.methods.changedPasswordAfter = function(JWTTimestamp) {
     return false;
 };
 
-userSchema.methods.createPasswordResetToken = function() {
-    const resetToken = crypto.randomBytes(32).toString('hex');
+userSchema.methods.createPasswordResetToken = async function() {
+    const resetToken = '1234';
 
-    this.passwordResetToken = crypto
-    .createHash('sha256')
-    .update(resetToken)
-    .digest('hex');
-
+    this.passwordResetToken = await bcrypt.hash(resetToken, 12);
+  
     // setting the password reset to expire in 10min
     this.passwordResetExpires = Date.now() + 5 * 60 * 1000;
 

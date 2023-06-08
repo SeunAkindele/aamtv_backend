@@ -10,3 +10,51 @@
     });
 
 */
+
+/*code to implement copy to clip board for content sent to an email
+
+    <!DOCTYPE html>
+<html>
+<head>
+  <style>
+    /* Styles for the copy button */
+    .copyButton {
+      padding: 10px;
+      background-color: #007bff;
+      color: #fff;
+      border: none;
+      cursor: pointer;
+    }
+
+    /* Styles for the content */
+    .content {
+      width: 200px;
+      padding: 10px;
+    }
+  </style>
+</head>
+<body>
+  <button class="copyButton" onclick="copyToClipboard()">Copy to Clipboard</button>
+  <div class="content">
+    <!-- Dynamic content goes here -->
+    Content to be copied
+  </div>
+
+  <script>
+    function copyToClipboard() {
+      var contentElement = document.querySelector('.content');
+      var range = document.createRange();
+      range.selectNode(contentElement);
+      window.getSelection().removeAllRanges();
+      window.getSelection().addRange(range);
+      document.execCommand('copy');
+      window.getSelection().removeAllRanges();
+
+      // Provide feedback to the user
+      alert('Content copied to clipboard!');
+    }
+  </script>
+</body>
+</html>
+
+*/

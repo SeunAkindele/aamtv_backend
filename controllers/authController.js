@@ -1,4 +1,5 @@
 const crypto = require('crypto');
+const bcrypt = require('bcryptjs');
 const { promisify } = require('util');
 const jwt = require('jsonwebtoken');
 const User = require('../models/userModel');
@@ -30,9 +31,14 @@ exports.signup = catchAsync(async (req, res, next) => {
     const newUser = await User.create({
         name: req.body.name,
         email: req.body.email,
+        country: req.body.country,
+        phone: req.body.phone,
+        role: req.body.role,
+        skill: req.body.skill,
+        photo: req.body.photo,
+        introduction: req.body.introduction,
         password: req.body.password,
-        passwordConfirm: req.body.passwordConfirm,
-        role: req.body.role
+        passwordConfirm: req.body.passwordConfirm        
     });
 
     createSendToken(newUser, 201, res);
@@ -98,7 +104,6 @@ exports.restrictTo = (...roles) => {
         
         // req.user.role is accessed from line 87 after successful login
         if(!roles.includes(req.user.role)) {
-            console.log(req.user.role);
             return next(new AppError('You do not have permission to perform this action', 403));
         }
 
@@ -115,7 +120,7 @@ exports.forgotPassword = catchAsync(async (req, res, next) => {
     }
 
     // Generate the random reset token
-    const resetToken = user.createPasswordResetToken();
+    const resetToken = await user.createPasswordResetToken();
 
     // modifying the user document with the added passwordResetToken and passwordResetExpires property using save in-built function
     await user.save({ validateBeforeSave: false });
@@ -134,7 +139,7 @@ exports.forgotPassword = catchAsync(async (req, res, next) => {
 
         res.status(200).json({
             status: 'success',
-            message: 'Token sent to email!'
+            message: 'A code has been sent to your email!'
         });
     } catch(err) {
         user.createPasswordResetToken = undefined;
@@ -148,15 +153,11 @@ exports.forgotPassword = catchAsync(async (req, res, next) => {
 
 exports.resetPassword = async (req, res, next) => {
     // Get user based on the token
-    const hashedToken = crypto
-    .createHash('sha256')
-    .update(req.body.token)
-    .digest('hex');
 
-    const user = await User.findOne({passwordResetToken: hashedToken, passwordResetExpires: { $gt: Date.now() }});
+    const user = await User.findOne({email: req.body.email, passwordResetExpires: { $gt: Date.now() }}).select('+passwordResetToken');
 
     // if token has not expired and there is user, set new password
-    if(!user) {
+    if(!user || !await user.correctOTP(req.body.token, user.passwordResetToken)) {
         return next(new AppError('Token is invalid or has expired', 400));
     }
 

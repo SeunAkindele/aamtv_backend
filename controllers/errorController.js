@@ -10,8 +10,8 @@ const handleDuplicateFieldsDB = err => {
 
 const handleValidationErrorDB = err => {
     let prop = Object.keys(err.errors)[0];  
-    let value = err.errors[prop].message ? `: ${err.errors[prop].message}` : '';
-    const message = `Invalid input data${value}`;
+    let value = err.errors[prop].message ? `${err.errors[prop].message}` : '';
+    const message = `${value}`;
 
     return new AppError(message, 400);
 }
