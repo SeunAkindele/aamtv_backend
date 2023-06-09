@@ -76,6 +76,20 @@ exports.getOne = Model => catchAsync(async (req, res, next) => {
     });
 });
 
+exports.getAllAsc = (Model, validationObject={}) => catchAsync(async (req, res, next) => {
+    const features = new APIFeatures(Model.find(validationObject), req.query)
+    .lazyLoader()
+
+    const data = await features.query;
+
+    res.status(200).json({
+        status: 'success',
+        results: data.length,
+        data: {
+            data
+        }
+    });
+});
 
 exports.getCountIsExist = (Model, prop) => catchAsync( async (req, res, next) => {
 
