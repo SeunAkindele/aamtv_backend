@@ -28,6 +28,8 @@ const createSendToken = (user, statusCode, res) => {
 }
 
 exports.signup = catchAsync(async (req, res, next) => {
+    if(req.file) req.body.photo = req.file.filename;
+    
     const newUser = await User.create({
         name: req.body.name,
         email: req.body.email,
