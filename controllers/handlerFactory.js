@@ -91,6 +91,22 @@ exports.getAllAsc = (Model, validationObject={}) => catchAsync(async (req, res, 
     });
 });
 
+exports.search = (Model, col) => catchAsync(async (req, res, next) => {
+    let validationObject={ [col]: { $regex: req.query.search, $options: 'i' } }
+    const features = new APIFeatures(Model.find(validationObject), req.query)
+    .limit()
+
+    const data = await features.query;
+
+    res.status(200).json({
+        status: 'success',
+        results: data.length,
+        data: {
+            data
+        }
+    });
+});
+
 exports.getCountIsExist = (Model, prop) => catchAsync( async (req, res, next) => {
 
     let isExist = false;

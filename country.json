@@ -1,1237 +1,1237 @@
 [
     {
       "code": "+34",
-      "flag": "assets/country/spain.png",
+      "flag": "spain.png",
       "country": "Spain"
     },
     {
       "code": "+93",
-      "flag": "assets/country/afghanistan.webp",
+      "flag": "afghanistan.webp",
       "country": "Afghanistan"
     },
     {
       "code": "+249",
-      "flag": "assets/country/sudan.png",
+      "flag": "sudan.png",
       "country": "Sudan"
     },
     {
       "code": "+359",
-      "flag": "assets/country/bulgaria.png",
+      "flag": "bulgaria.png",
       "country": "Bulgaria"
     },
     {
       "code": "+49",
-      "flag": "assets/country/germany.png",
+      "flag": "germany.png",
       "country": "Germany"
     },
     {
       "code": "+370",
-      "flag": "assets/country/lithuania.png",
+      "flag": "lithuania.png",
       "country": "Lithuania"
     },
     {
       "code": "+262",
-      "flag": "assets/country/mayotte.png",
+      "flag": "mayotte.png",
       "country": "Mayotte"
     },
     {
       "code": "+692",
-      "flag": "assets/country/marshall.png",
+      "flag": "marshall.png",
       "country": "Marshall Islands"
     },
     {
       "code": "+48",
-      "flag": "assets/country/poland.png",
+      "flag": "poland.png",
       "country": "Poland"
     },
     {
       "code": "+690",
-      "flag": "assets/country/tokelau.png",
+      "flag": "tokelau.png",
       "country": "Tokelau"
     },
     {
       "code": "+255",
-      "flag": "assets/country/tanzania.png",
+      "flag": "tanzania.png",
       "country": "Tanzania"
     },
     {
       "code": "+853",
-      "flag": "assets/country/macau.png",
+      "flag": "macau.png",
       "country": "Macau"
     },
     {
       "code": "+670",
-      "flag": "assets/country/timor.png",
+      "flag": "timor.png",
       "country": "Timor-Leste"
     },
     {
       "code": "+228",
-      "flag": "assets/country/togo.png",
+      "flag": "togo.png",
       "country": "Togo"
     },
     {
       "code": "+420",
-      "flag": "assets/country/czechia.png",
+      "flag": "czechia.png",
       "country": "Czechia"
     },
     {
       "code": "+377",
-      "flag": "assets/country/monaco.png",
+      "flag": "monaco.png",
       "country": "Monaco"
     },
     {
       "code": "+256",
-      "flag": "assets/country/uganda.png",
+      "flag": "uganda.png",
       "country": "Uganda"
     },
     {
       "code": "+1868",
-      "flag": "assets/country/trinidad.png",
+      "flag": "trinidad.png",
       "country": "Trinidad and Tobago"
     },
     {
       "code": "+213",
-      "flag": "assets/country/algeria.png",
+      "flag": "algeria.png",
       "country": "Algeria"
     },
     {
       "code": "+380",
-      "flag": "assets/country/ukraine.png",
+      "flag": "ukraine.png",
       "country": "Ukraine"
     },
     {
       "code": "+372",
-      "flag": "assets/country/estonia.png",
+      "flag": "estonia.png",
       "country": "Estonia"
     },
     {
       "code": "+30",
-      "flag": "assets/country/greece.png",
+      "flag": "greece.png",
       "country": "Greece"
     },
     {
       "code": "+222",
-      "flag": "assets/country/mauritania.png",
+      "flag": "mauritania.png",
       "country": "Mauritania"
     },
     {
       "code": "+995",
-      "flag": "assets/country/georgia.png",
+      "flag": "georgia.png",
       "country": "Georgia"
     },
     {
       "code": "+1721",
-      "flag": "assets/country/sint.png",
+      "flag": "sint.png",
       "country": "Sint Maarten"
     },
     {
       "code": "+264",
-      "flag": "assets/country/namibia.png",
+      "flag": "namibia.png",
       "country": "Namibia"
     },
     {
       "code": "+389",
-      "flag": "assets/country/macedonia.png",
+      "flag": "macedonia.png",
       "country": "North Macedonia"
     },
     {
       "code": "+230",
-      "flag": "assets/country/mauritius.png",
+      "flag": "mauritius.png",
       "country": "Mauritius"
     },
     {
       "code": "+686",
-      "flag": "assets/country/kiribati.png",
+      "flag": "kiribati.png",
       "country": "Kiribati"
     },
     {
       "code": "+242",
-      "flag": "assets/country/congo.png",
+      "flag": "congo.png",
       "country": "Republic of the Congo"
     },
     {
       "code": "+240",
-      "flag": "assets/country/equatorial-guinea.png",
+      "flag": "equatorial-guinea.png",
       "country": "Equatorial Guinea"
     },
     {
       "code": "+246",
-      "flag": "assets/country/british-indian.png",
+      "flag": "british-indian.png",
       "country": "British Indian Ocean Territory"
     },
     {
       "code": "+683",
-      "flag": "assets/country/niue.png",
+      "flag": "niue.png",
       "country": "Niue"
     },
     {
       "code": "+383",
-      "flag": "assets/country/kosovo.png",
+      "flag": "kosovo.png",
       "country": "Kosovo"
     },
     {
       "code": "+680",
-      "flag": "assets/country/palau.png",
+      "flag": "palau.png",
       "country": "Palau"
     },
     {
       "code": "+974",
-      "flag": "assets/country/qatar.png",
+      "flag": "qatar.png",
       "country": "Qatar"
     },
     {
       "code": "+1",
-      "flag": "assets/country/us.png",
+      "flag": "us.png",
       "country": "United States"
     },
     {
       "code": "+1345",
-      "flag": "assets/country/cayman.png",
+      "flag": "cayman.png",
       "country": "Cayman Islands"
     },
     {
       "code": "+267",
-      "flag": "assets/country/botswana.png",
+      "flag": "botswana.png",
       "country": "Botswana"
     },
     {
       "code": "+970",
-      "flag": "assets/country/palestine.png",
+      "flag": "palestine.png",
       "country": "Palestine"
     },
     {
       "code": "+27",
-      "flag": "assets/country/south-africa.png",
+      "flag": "south-africa.png",
       "country": "South Africa"
     },
     {
       "code": "+84",
-      "flag": "assets/country/vietnam.png",
+      "flag": "vietnam.png",
       "country": "Vietnam"
     },
     {
       "code": "+44",
-      "flag": "assets/country/jersey.png",
+      "flag": "jersey.png",
       "country": "Jersey"
     },
     {
       "code": "+592",
-      "flag": "assets/country/guyana.png",
+      "flag": "guyana.png",
       "country": "Guyana"
     },
     {
       "code": "+688",
-      "flag": "assets/country/tuvalu.png",
+      "flag": "tuvalu.png",
       "country": "Tuvalu"
     },
     {
       "code": "+962",
-      "flag": "assets/country/jordan.png",
+      "flag": "jordan.png",
       "country": "Jordan"
     },
     {
       "code": "+675",
-      "flag": "assets/country/papua.png",
+      "flag": "papua.png",
       "country": "Papua New Guinea"
     },
     {
       "code": "+1242",
-      "flag": "assets/country/bahamas.png",
+      "flag": "bahamas.png",
       "country": "Bahamas"
     },
     {
       "code": "+238",
-      "flag": "assets/country/cape.png",
+      "flag": "cape.png",
       "country": "Cape Verde"
     },
     {
       "code": "+968",
-      "flag": "assets/country/oman.png",
+      "flag": "oman.png",
       "country": "Oman"
     },
     {
       "code": "+58",
-      "flag": "assets/country/venezuela.png",
+      "flag": "venezuela.png",
       "country": "Venezuela"
     },
     {
       "code": "+591",
-      "flag": "assets/country/bolivia.png",
+      "flag": "bolivia.png",
       "country": "Bolivia"
     },
     {
       "code": "+20",
-      "flag": "assets/country/egypt.png",
+      "flag": "egypt.png",
       "country": "Egypt"
     },
     {
       "code": "+1",
-      "flag": "assets/country/canada.png",
+      "flag": "canada.png",
       "country": "Canada"
     },
     {
       "code": "+47",
-      "flag": "assets/country/norway.png",
+      "flag": "norway.png",
       "country": "Norway"
     },
     {
       "code": "+996",
-      "flag": "assets/country/kyrgyzstan.png",
+      "flag": "kyrgyzstan.png",
       "country": "Kyrgyzstan"
     },
     {
       "code": "+374",
-      "flag": "assets/country/armenia.png",
+      "flag": "armenia.png",
       "country": "Armenia"
     },
     {
       "code": "+243",
-      "flag": "assets/country/dr-congo.png",
+      "flag": "dr-congo.png",
       "country": "DR Congo"
     },
     {
       "code": "+1787",
-      "flag": "assets/country/puerto-rico.png",
+      "flag": "puerto-rico.png",
       "country": "Puerto Rico"
     },
     {
       "code": "+423",
-      "flag": "assets/country/liechtenstein.png",
+      "flag": "liechtenstein.png",
       "country": "Liechtenstein"
     },
     {
       "code": "+268",
-      "flag": "assets/country/eswatini.png",
+      "flag": "eswatini.png",
       "country": "Eswatini"
     },
     {
       "code": "+298",
-      "flag": "assets/country/faroe.png",
+      "flag": "faroe.png",
       "country": "Faroe Islands"
     },
     {
       "code": "+234",
-      "flag": "assets/country/nigeria.png",
+      "flag": "nigeria.png",
       "country": "Nigeria"
     },
     {
       "code": "+590",
-      "flag": "assets/country/saint-martin.png",
+      "flag": "saint-martin.png",
       "country": "Saint Martin"
     },
     {
       "code": "+1671",
-      "flag": "assets/country/guam.png",
+      "flag": "guam.png",
       "country": "Guam"
     },
     {
       "code": "+265",
-      "flag": "assets/country/malawi.png",
+      "flag": "malawi.png",
       "country": "Malawi"
     },
     {
       "code": "+35818",
-      "flag": "assets/country/aland-islands.png",
+      "flag": "aland-islands.png",
       "country": "Åland Islands"
     },
     {
       "code": "+239",
-      "flag": "assets/country/sao.png",
+      "flag": "sao.png",
       "country": "São Tomé and Príncipe"
     },
     {
       "code": "+500",
-      "flag": "assets/country/falkland.png",
+      "flag": "falkland.png",
       "country": "Falkland Islands"
     },
     {
       "code": "+502",
-      "flag": "assets/country/guatemala.png",
+      "flag": "guatemala.png",
       "country": "Guatemala"
     },
     {
       "code": "+1246",
-      "flag": "assets/country/barbados.png",
+      "flag": "barbados.png",
       "country": "Barbados"
     },
     {
       "code": "+233",
-      "flag": "assets/country/ghana.png",
+      "flag": "ghana.png",
       "country": "Ghana"
     },
     {
       "code": "+505",
-      "flag": "assets/country/nicaragua.png",
+      "flag": "nicaragua.png",
       "country": "Nicaragua"
     },
     {
       "code": "+44",
-      "flag": "assets/country/isle-of-man.png",
+      "flag": "isle-of-man.png",
       "country": "Isle of Man"
     },
     {
       "code": "+351",
-      "flag": "assets/country/portugal.png",
+      "flag": "portugal.png",
       "country": "Portugal"
     },
     {
       "code": "+244",
-      "flag": "assets/country/angola.png",
+      "flag": "angola.png",
       "country": "Angola"
     },
     {
       "code": "+1809",
-      "flag": "assets/country/dominican.png",
+      "flag": "dominican.png",
       "country": "Dominican Republic"
     },
     {
       "code": "+355",
-      "flag": "assets/country/albania.png",
+      "flag": "albania.png",
       "country": "Albania"
     },
     {
       "code": "+245",
-      "flag": "assets/country/guinea-bissau.png",
+      "flag": "guinea-bissau.png",
       "country": "Guinea-Bissau"
     },
     {
       "code": "+218",
-      "flag": "assets/country/libya.png",
+      "flag": "libya.png",
       "country": "Libya"
     },
     {
       "code": "+965",
-      "flag": "assets/country/kuwait.png",
+      "flag": "kuwait.png",
       "country": "Kuwait"
     },
     {
       "code": "+973",
-      "flag": "assets/country/bahrain.png",
+      "flag": "bahrain.png",
       "country": "Bahrain"
     },
     {
       "code": "+993",
-      "flag": "assets/country/turkmenistan.png",
+      "flag": "turkmenistan.png",
       "country": "Turkmenistan"
     },
     {
       "code": "+231",
-      "flag": "assets/country/liberia.png",
+      "flag": "liberia.png",
       "country": "Liberia"
     },
     {
       "code": "+226",
-      "flag": "assets/country/burkina.png",
+      "flag": "burkina.png",
       "country": "Burkina Faso"
     },
     {
       "code": "+371",
-      "flag": "assets/country/latvia.png",
+      "flag": "latvia.png",
       "country": "Latvia"
     },
     {
       "code": "+73,4,5,8,9",
-      "flag": "assets/country/russia.png",
+      "flag": "russia.png",
       "country": "Russia"
     },
     {
       "code": "+63",
-      "flag": "assets/country/philippines.png",
+      "flag": "philippines.png",
       "country": "Philippines"
     },
     {
       "code": "+64",
-      "flag": "assets/country/new-zealand.png",
+      "flag": "new-zealand.png",
       "country": "New Zealand"
     },
     {
       "code": "+237",
-      "flag": "assets/country/cameroon.png",
+      "flag": "cameroon.png",
       "country": "Cameroon"
     },
     {
       "code": "+593",
-      "flag": "assets/country/ecuador.png",
+      "flag": "ecuador.png",
       "country": "Ecuador"
     },
     {
       "code": "+1264",
-      "flag": "assets/country/anguilla.png",
+      "flag": "anguilla.png",
       "country": "Anguilla"
     },
     {
       "code": "+40",
-      "flag": "assets/country/romania.png",
+      "flag": "romania.png",
       "country": "Romania"
     },
     {
       "code": "+91",
-      "flag": "assets/country/india.png",
+      "flag": "india.png",
       "country": "India"
     },
     {
       "code": "+241",
-      "flag": "assets/country/gabon.png",
+      "flag": "gabon.png",
       "country": "Gabon"
     },
     {
       "code": "+95",
-      "flag": "assets/country/myanmar.png",
+      "flag": "myanmar.png",
       "country": "Myanmar"
     },
     {
       "code": "+262",
-      "flag": "assets/country/reunion.png",
+      "flag": "reunion.png",
       "country": "Réunion"
     },
     {
       "code": "+1684",
-      "flag": "assets/country/american-samoa.png",
+      "flag": "american-samoa.png",
       "country": "American Samoa"
     },
     {
       "code": "+382",
-      "flag": "assets/country/montenegro.png",
+      "flag": "montenegro.png",
       "country": "Montenegro"
     },
     {
       "code": "+501",
-      "flag": "assets/country/belize.png",
+      "flag": "belize.png",
       "country": "Belize"
     },
     {
       "code": "+976",
-      "flag": "assets/country/mongolia.png",
+      "flag": "mongolia.png",
       "country": "Mongolia"
     },
     {
       "code": "+43",
-      "flag": "assets/country/austria.png",
+      "flag": "austria.png",
       "country": "Austria"
     },
     {
       "code": "+1664",
-      "flag": "assets/country/montserrat.png",
+      "flag": "montserrat.png",
       "country": "Montserrat"
     },
     {
       "code": "+966",
-      "flag": "assets/country/saudi-arabia.png",
+      "flag": "saudi-arabia.png",
       "country": "Saudi Arabia"
     },
     {
       "code": "+36",
-      "flag": "assets/country/hungary.png",
+      "flag": "hungary.png",
       "country": "Hungary"
     },
     {
       "code": "+674",
-      "flag": "assets/country/nauru.png",
+      "flag": "nauru.png",
       "country": "Nauru"
     },
     {
       "code": "+54",
-      "flag": "assets/country/argentina.png",
+      "flag": "argentina.png",
       "country": "Argentina"
     },
     {
       "code": "+64",
-      "flag": "assets/country/pitcairn.png",
+      "flag": "pitcairn.png",
       "country": "Pitcairn Islands"
     },
     {
       "code": "+681",
-      "flag": "assets/country/wallis.png",
+      "flag": "wallis.png",
       "country": "Wallis and Futuna"
     },
     {
       "code": "+967",
-      "flag": "assets/country/yemen.png",
+      "flag": "yemen.png",
       "country": "Yemen"
     },
     {
       "code": "+421",
-      "flag": "assets/country/slovakia.png",
+      "flag": "slovakia.png",
       "country": "Slovakia"
     },
     {
       "code": "+1649",
-      "flag": "assets/country/turks.png",
+      "flag": "turks.png",
       "country": "Turks and Caicos Islands"
     },
     {
       "code": "+46",
-      "flag": "assets/country/sweden.png",
+      "flag": "sweden.png",
       "country": "Sweden"
     },
     {
       "code": "+290,47",
-      "flag": "assets/country/helena.png",
+      "flag": "helena.png",
       "country": "Saint Helena, Ascension and Tristan da Cunha"
     },
     {
       "code": "+39",
-      "flag": "assets/country/italy.png",
+      "flag": "italy.png",
       "country": "Italy"
     },
     {
       "code": "+55",
-      "flag": "assets/country/brazil.png",
+      "flag": "brazil.png",
       "country": "Brazil"
     },
     {
       "code": "+211",
-      "flag": "assets/country/south-sudan.png",
+      "flag": "south-sudan.png",
       "country": "South Sudan"
     },
     {
       "code": "+357",
-      "flag": "assets/country/cyprus.png",
+      "flag": "cyprus.png",
       "country": "Cyprus"
     },
     {
       "code": "+66",
-      "flag": "assets/country/thailand.png",
+      "flag": "thailand.png",
       "country": "Thailand"
     },
     {
       "code": "+90",
-      "flag": "assets/country/turkey.png",
+      "flag": "turkey.png",
       "country": "Turkey"
     },
     {
       "code": "+1441",
-      "flag": "assets/country/bermuda.png",
+      "flag": "bermuda.png",
       "country": "Bermuda"
     },
     {
       "code": "+61",
-      "flag": "assets/country/australia.png",
+      "flag": "australia.png",
       "country": "Australia"
     },
     {
       "code": "+880",
-      "flag": "assets/country/bangladesh.png",
+      "flag": "bangladesh.png",
       "country": "Bangladesh"
     },
     {
       "code": "+1473",
-      "flag": "assets/country/grenada.png",
+      "flag": "grenada.png",
       "country": "Grenada"
     },
     {
       "code": "+65",
-      "flag": "assets/country/singapore.png",
+      "flag": "singapore.png",
       "country": "Singapore"
     },
     {
       "code": "+373",
-      "flag": "assets/country/moldova.png",
+      "flag": "moldova.png",
       "country": "Moldova"
     },
     {
       "code": "+223",
-      "flag": "assets/country/mali.png",
+      "flag": "mali.png",
       "country": "Mali"
     },
     {
       "code": "+254",
-      "flag": "assets/country/kenya.png",
+      "flag": "kenya.png",
       "country": "Kenya"
     },
     {
       "code": "+598",
-      "flag": "assets/country/uruguay.png",
+      "flag": "uruguay.png",
       "country": "Uruguay"
     },
     {
       "code": "+41",
-      "flag": "assets/country/switzerland.png",
+      "flag": "switzerland.png",
       "country": "Switzerland"
     },
     {
       "code": "+503",
-      "flag": "assets/country/salvador.png",
+      "flag": "salvador.png",
       "country": "El Salvador"
     },
     {
       "code": "+235",
-      "flag": "assets/country/chad.png",
+      "flag": "chad.png",
       "country": "Chad"
     },
     {
       "code": "+299",
-      "flag": "assets/country/greenland.png",
+      "flag": "greenland.png",
       "country": "Greenland"
     },
     {
       "code": "+375",
-      "flag": "assets/country/belarus.png",
+      "flag": "belarus.png",
       "country": "Belarus"
     },
     {
       "code": "+225",
-      "flag": "assets/country/ivory-coast.png",
+      "flag": "ivory-coast.png",
       "country": "Ivory Coast"
     },
     {
       "code": "+961",
-      "flag": "assets/country/lebanon.png",
+      "flag": "lebanon.png",
       "country": "Lebanon"
     },
     {
       "code": "+31",
-      "flag": "assets/country/netherlands.png",
+      "flag": "netherlands.png",
       "country": "Netherlands"
     },
     {
       "code": "+378",
-      "flag": "assets/country/marino.png",
+      "flag": "marino.png",
       "country": "San Marino"
     },
     {
       "code": "+975",
-      "flag": "assets/country/bhutan.png",
+      "flag": "bhutan.png",
       "country": "Bhutan"
     },
     {
       "code": "+60",
-      "flag": "assets/country/malaysia.png",
+      "flag": "malaysia.png",
       "country": "Malaysia"
     },
     {
       "code": "+76,7",
-      "flag": "assets/country/kazakhstan.png",
+      "flag": "kazakhstan.png",
       "country": "Kazakhstan"
     },
     {
       "code": "+358",
-      "flag": "assets/country/finland.png",
+      "flag": "finland.png",
       "country": "Finland"
     },
     {
       "code": "+216",
-      "flag": "assets/country/tunisia.png",
+      "flag": "tunisia.png",
       "country": "Tunisia"
     },
     {
       "code": "+220",
-      "flag": "assets/country/gambia.png",
+      "flag": "gambia.png",
       "country": "Gambia"
     },
     {
       "code": "+963",
-      "flag": "assets/country/syria.png",
+      "flag": "syria.png",
       "country": "Syria"
     },
     {
       "code": "+262",
-      "flag": "assets/country/fsa.png",
+      "flag": "fsa.png",
       "country": "French Southern and Antarctic Lands"
     },
     {
       "code": "+672",
-      "flag": "assets/country/norfolk.png",
+      "flag": "norfolk.png",
       "country": "Norfolk Island"
     },
     {
       "code": "+224",
-      "flag": "assets/country/guinea.png",
+      "flag": "guinea.png",
       "country": "Guinea"
     },
     {
       "code": "+599",
-      "flag": "assets/country/caribbean-netherlands.png",
+      "flag": "caribbean-netherlands.png",
       "country": "Caribbean Netherlands"
     },
     {
       "code": "+258",
-      "flag": "assets/country/mozambique.png",
+      "flag": "mozambique.png",
       "country": "Mozambique"
     },
     {
       "code": "+685",
-      "flag": "assets/country/samoa.png",
+      "flag": "samoa.png",
       "country": "Samoa"
     },
     {
       "code": "+886",
-      "flag": "assets/country/taiwan.png",
+      "flag": "taiwan.png",
       "country": "Taiwan"
     },
     {
       "code": "+500",
-      "flag": "assets/country/south-georgia.png",
+      "flag": "south-georgia.png",
       "country": "South Georgia"
     },
     {
       "code": "+850",
-      "flag": "assets/country/north-korea.png",
+      "flag": "north-korea.png",
       "country": "North Korea"
     },
     {
       "code": "+253",
-      "flag": "assets/country/djibouti.png",
+      "flag": "djibouti.png",
       "country": "Djibouti"
     },
     {
       "code": "+597",
-      "flag": "assets/country/suricountry.png",
+      "flag": "suricountry.png",
       "country": "Suricountry"
     },
     {
       "code": "+33",
-      "flag": "assets/country/france.png",
+      "flag": "france.png",
       "country": "France"
     },
     {
       "code": "+250",
-      "flag": "assets/country/rwanda.png",
+      "flag": "rwanda.png",
       "country": "Rwanda"
     },
     {
       "code": "+82",
-      "flag": "assets/country/south-korea.png",
+      "flag": "south-korea.png",
       "country": "South Korea"
     },
     {
       "code": "+599",
-      "flag": "assets/country/curacao.png",
+      "flag": "curacao.png",
       "country": "Curaçao"
     },
     {
       "code": "+1876",
-      "flag": "assets/country/jamaica.png",
+      "flag": "jamaica.png",
       "country": "Jamaica"
     },
     {
       "code": "+960",
-      "flag": "assets/country/maldives.png",
+      "flag": "maldives.png",
       "country": "Maldives"
     },
     {
       "code": "+386",
-      "flag": "assets/country/slovenia.png",
+      "flag": "slovenia.png",
       "country": "Slovenia"
     },
     {
       "code": "+61",
-      "flag": "assets/country/xmas.png",
+      "flag": "xmas.png",
       "country": "Christmas Island"
     },
     {
       "code": "+1340",
-      "flag": "assets/country/virgin.png",
+      "flag": "virgin.png",
       "country": "United States Virgin Islands"
     },
     {
       "code": "+595",
-      "flag": "assets/country/paraguay.png",
+      "flag": "paraguay.png",
       "country": "Paraguay"
     },
     {
       "code": "+62",
-      "flag": "assets/country/indonesia.png",
+      "flag": "indonesia.png",
       "country": "Indonesia"
     },
     {
       "code": "+261",
-      "flag": "assets/country/madagascar.png",
+      "flag": "madagascar.png",
       "country": "Madagascar"
     },
     {
       "code": "+964",
-      "flag": "assets/country/iraq.png",
+      "flag": "iraq.png",
       "country": "Iraq"
     },
     {
       "code": "+504",
-      "flag": "assets/country/honduras.png",
+      "flag": "honduras.png",
       "country": "Honduras"
     },
     {
       "code": "+212",
-      "flag": "assets/country/morocco.png",
+      "flag": "morocco.png",
       "country": "Morocco"
     },
     {
       "code": "+852",
-      "flag": "assets/country/hong-kong.png",
+      "flag": "hong-kong.png",
       "country": "Hong Kong"
     },
     {
       "code": "+1268",
-      "flag": "assets/country/barbuda.png",
+      "flag": "barbuda.png",
       "country": "Antigua and Barbuda"
     },
     {
       "code": "+94",
-      "flag": "assets/country/lanka.png",
+      "flag": "lanka.png",
       "country": "Sri Lanka"
     },
     {
       "code": "+509",
-      "flag": "assets/country/haiti.png",
+      "flag": "haiti.png",
       "country": "Haiti"
     },
     {
       "code": "+53",
-      "flag": "assets/country/cuba.png",
+      "flag": "cuba.png",
       "country": "Cuba"
     },
     {
       "code": "+992",
-      "flag": "assets/country/tajikistan.png",
+      "flag": "tajikistan.png",
       "country": "Tajikistan"
     },
     {
       "code": "+682",
-      "flag": "assets/country/cook.png",
+      "flag": "cook.png",
       "country": "Cook Islands"
     },
     {
       "code": "+57",
-      "flag": "assets/country/colombia.png",
+      "flag": "colombia.png",
       "country": "Colombia"
     },
     {
       "code": "+691",
-      "flag": "assets/country/micronesia.png",
+      "flag": "micronesia.png",
       "country": "Micronesia"
     },
     {
       "code": "+1670",
-      "flag": "assets/country/mariana.png",
+      "flag": "mariana.png",
       "country": "Northern Mariana Islands"
     },
     {
       "code": "+1869",
-      "flag": "assets/country/nevis.png",
+      "flag": "nevis.png",
       "country": "Saint Kitts and Nevis"
     },
     {
       "code": "+998",
-      "flag": "assets/country/uzbekistan.png",
+      "flag": "uzbekistan.png",
       "country": "Uzbekistan"
     },
     {
       "code": "+350",
-      "flag": "assets/country/gibraltar.png",
+      "flag": "gibraltar.png",
       "country": "Gibraltar"
     },
     {
       "code": "+353",
-      "flag": "assets/country/ireland.png",
+      "flag": "ireland.png",
       "country": "Ireland"
     },
     {
       "code": "+51",
-      "flag": "assets/country/peru.png",
+      "flag": "peru.png",
       "country": "Peru"
     },
     {
       "code": "+92",
-      "flag": "assets/country/pakistan.png",
+      "flag": "pakistan.png",
       "country": "Pakistan"
     },
     {
       "code": "+56",
-      "flag": "assets/country/chile.png",
+      "flag": "chile.png",
       "country": "Chile"
     },
     {
       "code": "+260",
-      "flag": "assets/country/zambia.png",
+      "flag": "zambia.png",
       "country": "Zambia"
     },
     {
       "code": "+1758",
-      "flag": "assets/country/lucia.png",
+      "flag": "lucia.png",
       "country": "Saint Lucia"
     },
     {
       "code": "+248",
-      "flag": "assets/country/seychelles.png",
+      "flag": "seychelles.png",
       "country": "Seychelles"
     },
     {
       "code": "+229",
-      "flag": "assets/country/benin.png",
+      "flag": "benin.png",
       "country": "Benin"
     },
     {
       "code": "+44",
-      "flag": "assets/country/uk.png",
+      "flag": "uk.png",
       "country": "United Kingdom"
     },
     {
       "code": "+47",
-      "flag": "assets/country/bouvet.png",
+      "flag": "bouvet.png",
       "country": "Bouvet Island"
     },
     {
       "code": "+506",
-      "flag": "assets/country/costa-rica.png",
+      "flag": "costa-rica.png",
       "country": "Costa Rica"
     },
     {
       "code": "+269",
-      "flag": "assets/country/comoros.png",
+      "flag": "comoros.png",
       "country": "Comoros"
     },
     {
       "code": "+354",
-      "flag": "assets/country/iceland.png",
+      "flag": "iceland.png",
       "country": "Iceland"
     },
     {
       "code": "+81",
-      "flag": "assets/country/japan.png",
+      "flag": "japan.png",
       "country": "Japan"
     },
     {
       "code": "+3906698",
-      "flag": "assets/country/vatican.png",
+      "flag": "vatican.png",
       "country": "Vatican City"
     },
     {
       "code": "+1284",
-      "flag": "assets/country/bvi.png",
+      "flag": "bvi.png",
       "country": "British Virgin Islands"
     },
     {
       "code": "+687",
-      "flag": "assets/country/caledonia.png",
+      "flag": "caledonia.png",
       "country": "New Caledonia"
     },
     {
       "code": "+679",
-      "flag": "assets/country/fiji.png",
+      "flag": "fiji.png",
       "country": "Fiji"
     },
     {
       "code": "+387",
-      "flag": "assets/country/bosnia.png",
+      "flag": "bosnia.png",
       "country": "Bosnia and Herzegovina"
     },
     {
       "code": "+61",
-      "flag": "assets/country/cocos.png",
+      "flag": "cocos.png",
       "country": "Cocos (Keeling) Islands"
     },
     {
       "code": "+52",
-      "flag": "assets/country/mexico.png",
+      "flag": "mexico.png",
       "country": "Mexico"
     },
     {
       "code": "+855",
-      "flag": "assets/country/cambodia.png",
+      "flag": "cambodia.png",
       "country": "Cambodia"
     },
     {
       "code": "+1784",
-      "flag": "assets/country/grenadines.png",
+      "flag": "grenadines.png",
       "country": "Saint Vincent and the Grenadines"
     },
     {
       "code": "+98",
-      "flag": "assets/country/iran.png",
+      "flag": "iran.png",
       "country": "Iran"
     },
     {
       "code": "+356",
-      "flag": "assets/country/malta.png",
+      "flag": "malta.png",
       "country": "Malta"
     },
     {
       "code": "+381",
-      "flag": "assets/country/serbia.png",
+      "flag": "serbia.png",
       "country": "Serbia"
     },
     {
       "code": "+971",
-      "flag": "assets/country/united-arab.png",
+      "flag": "united-arab.png",
       "country": "United Arab Emirates"
     },
     {
       "code": "+994",
-      "flag": "assets/country/azerbaijan.png",
+      "flag": "azerbaijan.png",
       "country": "Azerbaijan"
     },
     {
       "code": "+689",
-      "flag": "assets/country/fp.png",
+      "flag": "fp.png",
       "country": "French Polynesia"
     },
     {
       "code": "+678",
-      "flag": "assets/country/vanuatu.png",
+      "flag": "vanuatu.png",
       "country": "Vanuatu"
     },
     {
       "code": "+227",
-      "flag": "assets/country/niger.png",
+      "flag": "niger.png",
       "country": "Niger"
     },
     {
       "code": "+291",
-      "flag": "assets/country/eritrea.png",
+      "flag": "eritrea.png",
       "country": "Eritrea"
     },
     {
       "code": "+236",
-      "flag": "assets/country/car.png",
+      "flag": "car.png",
       "country": "Central African Republic"
     },
     {
       "code": "+972",
-      "flag": "assets/country/israel.png",
+      "flag": "israel.png",
       "country": "Israel"
     },
     {
       "code": "+977",
-      "flag": "assets/country/nepal.png",
+      "flag": "nepal.png",
       "country": "Nepal"
     },
     {
       "code": "+507",
-      "flag": "assets/country/panama.png",
+      "flag": "panama.png",
       "country": "Panama"
     },
     {
       "code": "+44",
-      "flag": "assets/country/guernsey.png",
+      "flag": "guernsey.png",
       "country": "Guernsey"
     },
     {
       "code": "+677",
-      "flag": "assets/country/solomon.png",
+      "flag": "solomon.png",
       "country": "Solomon Islands"
     },
     {
       "code": "+263",
-      "flag": "assets/country/zimbabwe.png",
+      "flag": "zimbabwe.png",
       "country": "Zimbabwe"
     },
     {
       "code": "+297",
-      "flag": "assets/country/aruba.png",
+      "flag": "aruba.png",
       "country": "Aruba"
     },
     {
       "code": "+673",
-      "flag": "assets/country/brunei.png",
+      "flag": "brunei.png",
       "country": "Brunei"
     },
     {
       "code": "+45",
-      "flag": "assets/country/denmark.png",
+      "flag": "denmark.png",
       "country": "Denmark"
     },
     {
       "code": "+32",
-      "flag": "assets/country/belgium.png",
+      "flag": "belgium.png",
       "country": "Belgium"
     },
     {
       "code": "+594",
-      "flag": "assets/country/guiana.png",
+      "flag": "guiana.png",
       "country": "French Guiana"
     },
     {
       "code": "+856",
-      "flag": "assets/country/laos.png",
+      "flag": "laos.png",
       "country": "Laos"
     },
     {
       "code": "+676",
-      "flag": "assets/country/tonga.png",
+      "flag": "tonga.png",
       "country": "Tonga"
     },
     {
       "code": "+376",
-      "flag": "assets/country/andorra.png",
+      "flag": "andorra.png",
       "country": "Andorra"
     },
     {
       "code": "+590",
-      "flag": "assets/country/guadeloupe.png",
+      "flag": "guadeloupe.png",
       "country": "Guadeloupe"
     },
     {
       "code": "+596",
-      "flag": "assets/country/martinique.png",
+      "flag": "martinique.png",
       "country": "Martinique"
     },
     {
       "code": "+266",
-      "flag": "assets/country/lesotho.png",
+      "flag": "lesotho.png",
       "country": "Lesotho"
     },
     {
       "code": "+1767",
-      "flag": "assets/country/dominica.png",
+      "flag": "dominica.png",
       "country": "Dominica"
     },
     {
       "code": "+252",
-      "flag": "assets/country/somalia.png",
+      "flag": "somalia.png",
       "country": "Somalia"
     },
     {
       "code": "+385",
-      "flag": "assets/country/croatia.png",
+      "flag": "croatia.png",
       "country": "Croatia"
     },
     {
       "code": "+232",
-      "flag": "assets/country/leone.png",
+      "flag": "leone.png",
       "country": "Sierra Leone"
     },
     {
       "code": "+590",
-      "flag": "assets/country/barthelemy.png",
+      "flag": "barthelemy.png",
       "country": "Saint Barthélemy"
     },
     {
       "code": "+4779",
-      "flag": "assets/country/sjm.png",
+      "flag": "sjm.png",
       "country": "Svalbard and Jan Mayen"
     },
     {
       "code": "+508",
-      "flag": "assets/country/miquelon.png",
+      "flag": "miquelon.png",
       "country": "Saint Pierre and Miquelon"
     },
     {
       "code": "+268",
-      "flag": "assets/country/usmoi.png",
+      "flag": "usmoi.png",
       "country": "United States Minor Outlying Islands"
     },
     {
       "code": "+257",
-      "flag": "assets/country/burundi.png",
+      "flag": "burundi.png",
       "country": "Burundi"
     },
     {
       "code": "+221",
-      "flag": "assets/country/senegal.png",
+      "flag": "senegal.png",
       "country": "Senegal"
     },
     {
       "code": "+251",
-      "flag": "assets/country/ethiopia.png",
+      "flag": "ethiopia.png",
       "country": "Ethiopia"
     },
     {
       "code": "+352",
-      "flag": "assets/country/luxembourg.png",
+      "flag": "luxembourg.png",
       "country": "Luxembourg"
     },
     {
       "code": "+86",
-      "flag": "assets/country/china.png",
+      "flag": "china.png",
       "country": "China"
     }
   ]

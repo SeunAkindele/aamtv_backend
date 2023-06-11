@@ -13,6 +13,13 @@ class APIFeatures {
         return this;
     }
 
+    limit() {
+        // limit query rows
+        this.query = this.query.limit(20);
+
+        return this;
+    }
+
     sortByTime() {
         // sort by time in descending order
         this.query = this.query.sort({createdAt: -1});
