@@ -36,6 +36,12 @@ exports.uploadUserPhoto = upload.single('photo');
 exports.resizeUserPhoto = (req, res, next) => {
     if(!req.file) return next();
 
+    for(const key in req.body){
+        if(!req.body[key]) {
+            return next(new AppError(`Kindly provide your ${key}`, 400));
+        }
+    }
+
     req.file.filename = `user-${req.body.email}-${Date.now()}.jpeg`;
 
     sharp(req.file.buffer)
