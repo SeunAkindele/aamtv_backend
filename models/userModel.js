@@ -2,6 +2,7 @@ const crypto = require('crypto');
 const mongoose = require("mongoose");
 const validator = require('validator');
 const bcrypt = require('bcryptjs');
+const otpToken = require('../utils/otpToken');
 
 const userSchema = new mongoose.Schema(
     {
@@ -92,6 +93,8 @@ const userSchema = new mongoose.Schema(
             type: Boolean,
             default: true
         },
+        verificationResetToken: String,
+        verificationResetExpires: Date,
         passwordResetToken: String,
         passwordResetExpires: Date
     },
@@ -166,12 +169,23 @@ userSchema.methods.changedPasswordAfter = function(JWTTimestamp) {
 };
 
 userSchema.methods.createPasswordResetToken = async function() {
-    const resetToken = '1234';
+    const resetToken = otpToken();
 
     this.passwordResetToken = await bcrypt.hash(resetToken, 12);
   
     // setting the password reset to expire in 10min
     this.passwordResetExpires = Date.now() + 5 * 60 * 1000;
+
+    return resetToken;
+};
+
+userSchema.methods.createVerificationResetToken = async function() {
+    const resetToken = otpToken();
+
+    this.verificationResetToken = await bcrypt.hash(resetToken, 12);
+  
+    // setting the password reset to expire in 10min
+    this.verificationResetExpires = Date.now() + 5 * 60 * 1000;
 
     return resetToken;
 };
