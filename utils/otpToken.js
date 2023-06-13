@@ -9,7 +9,7 @@ const otpToken = () => {
       
       
       const randomNum = generateRandom4DigitNumber();
-      return randomNum;
+      return String(randomNum);
 };
 
 module.exports = otpToken;

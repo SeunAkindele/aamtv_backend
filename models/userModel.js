@@ -93,6 +93,10 @@ const userSchema = new mongoose.Schema(
             type: Boolean,
             default: true
         },
+        verified: {
+            type: Boolean,
+            default: false
+        },
         verificationResetToken: String,
         verificationResetExpires: Date,
         passwordResetToken: String,
@@ -180,14 +184,14 @@ userSchema.methods.createPasswordResetToken = async function() {
 };
 
 userSchema.methods.createVerificationResetToken = async function() {
-    const resetToken = otpToken();
+    const verificationToken = otpToken();
 
-    this.verificationResetToken = await bcrypt.hash(resetToken, 12);
+    this.verificationResetToken = await bcrypt.hash(verificationToken, 12);
   
     // setting the password reset to expire in 10min
     this.verificationResetExpires = Date.now() + 5 * 60 * 1000;
 
-    return resetToken;
+    return verificationToken;
 };
 
 const User = mongoose.model('User', userSchema);

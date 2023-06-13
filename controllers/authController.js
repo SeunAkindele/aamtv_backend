@@ -5,7 +5,7 @@ const jwt = require('jsonwebtoken');
 const User = require('../models/userModel');
 const catchAsync = require('../utils/catchAsync');
 const AppError = require('../utils/appError');
-const sendEmail = require('../utils/email');
+const Email = require('../utils/email');
 
 const signToken = id => {
     return jwt.sign(
@@ -15,7 +15,7 @@ const signToken = id => {
     );
 }
 
-const createSendToken = (user, statusCode, res) => {
+const createSendToken = async (user, statusCode, res) => {
     const token = signToken(user._id);
 
     res.status(statusCode).json({
@@ -26,6 +26,30 @@ const createSendToken = (user, statusCode, res) => {
         }
     });
 }
+
+exports.sendVerification = catchAsync(async (req, res, next) => {
+    const verificationToken = await req.user.createVerificationResetToken();
+    await req.user.save({ validateBeforeSave: false });
+    const message = `Your verification token ${verificationToken}`;
+
+    try{
+        const url = `${req.protocol}://${req.get('host')}/sendverification`;
+
+        await new Email(req.user, url).sendVerificationCode(message);
+
+        res.status(200).json({
+            status: 'success',
+            message: 'A verification code has been sent to your email!'
+        });
+    } catch(err) {
+        req.user.createVerificationResetToken = undefined;
+        req.user.verificationResetToken = undefined;
+
+        await req.user.save({ validateBeforeSave: false });
+
+        return next(new AppError('There was an error sending the email. Please try again later!', 500));
+    }
+});
 
 exports.signup = catchAsync(async (req, res, next) => {
     if(req.file) req.body.photo = req.file.filename;
@@ -41,8 +65,11 @@ exports.signup = catchAsync(async (req, res, next) => {
         introduction: req.body.introduction,
         password: req.body.password,
         passwordConfirm: req.body.passwordConfirm        
-    });      
+    });
 
+    const url = `${req.protocol}://${req.get('host')}/signup`;
+
+    await new Email(newUser, url).sendWelcome();
     createSendToken(newUser, 201, res);
 });
 
@@ -132,12 +159,10 @@ exports.forgotPassword = catchAsync(async (req, res, next) => {
 
     const message = `Copy the token below and paste in the provided field in the app to change your password.\n${resetToken}\nIf you didn't forget your password, please ignore this email!`;
 
-    try {    
-        await sendEmail({
-            email: user.email,
-            subject: 'Your password reset token, valid for 5min',
-            message
-        });
+    try {
+        const url = `${req.protocol}://${req.get('host')}/forgotPassword`;
+
+        await new Email(user, url).sendVerificationCode(message);
 
         res.status(200).json({
             status: 'success',

@@ -1,20 +1,29 @@
 const nodemailer = require('nodemailer');
+const htmlToText = require('html-to-text');
 
-const sendEmail = async options => {
-    // Create a transporter
+module.exports = class Email {
+    constructor(user, url) {
+        this.to = user.email;
+        this.firstName = user.name.split(' ')[0];
+        this.url = url;
+        this.from = `AAM TV <${process.env.EMAIL_FROM}>`;
+    };
 
-        // for gmail which is not good for production
-        /*const transporter = nodemailer.createTransport({
-            service: 'Gmail',
-            auth: {
-                user: process.env.EMAIL_USERNAME,
-                pass: process.env.EMAIL_PASSWORD
-            }
+    newTransport() {
+        if(process.env.NODE_ENV === 'production') {
+            // cpanel email
+            return nodemailer.createTransport({
+                host: 'your-cpanel-smtp-host',
+                port: your-cpanel-smtp-port,
+                secure: false,
+                auth: {
+                    user: 'your-email@example.com',
+                    pass: 'your-email-password'
+                }
+            });
+        }
 
-            // Activate in gmail account "less secure app" option
-        });*/
-
-        const transporter = nodemailer.createTransport({
+        return nodemailer.createTransport({
             host: process.env.EMAIL_HOST,
             port: process.env.EMAIL_PORT,
             auth: {
@@ -22,17 +31,31 @@ const sendEmail = async options => {
                 pass: process.env.EMAIL_PASSWORD
             }
         });
+    };
 
-    // Define the email options
-    const mailOptions = {
-        from: 'Oriade Akindele <oriadeakindele@gmail.com>',
-        to: options.email,
-        subject: options.subject,
-        text: options.message,
-        // html: 
-    }
-    // Send email
-    await transporter.sendMail(mailOptions);
+    async send(template, subject) {
+        // 1) Render HTML template
+        const html = template;
+
+        // 2) Define email options
+        const mailOptions = {
+            from: this.from,
+            to: this.to,
+            subject,
+            html
+        };
+
+        // 3) Create a transport and send email
+        await this.newTransport().sendMail(mailOptions);
+    };
+
+    async sendWelcome() {
+        await this.send('welcome', 'Welcome to African Art Music Tv');
+    };
+
+    async sendVerificationCode(msg) {
+        await this.send(msg, 'Verification code');
+    };
+
+    
 };
-
-module.exports = sendEmail;
