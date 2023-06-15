@@ -51,12 +51,38 @@ exports.sendVerification = catchAsync(async (req, res, next) => {
     }
 });
 
+exports.verification = async (req, res, next) => {
+    // Get user based on the token
+
+    const user = await User.findOne({email: req.user.email, verificationResetExpires: { $gt: Date.now() }}).select('+verificationResetToken');
+
+    // if token has not expired and there is user, set new password
+    if(!user || !await user.correctOTP(req.body.code, req.user.verificationResetToken)) {
+        return next(new AppError('Token is invalid or has expired', 400));
+    }
+
+    // update changePasswordAt property for the user
+    user.verified = true;
+    user.verificationResetToken = undefined;
+    user.verificationResetExpires = undefined;
+    
+    try{
+        // validation is not turned off so it validates if the passwords.
+        await user.save({validateBeforeSave: false});
+
+        // log the user in, send jwt
+        createSendToken(user, 200, res);
+    }catch(err){
+        return next(err);
+    }
+};
+
 exports.signup = catchAsync(async (req, res, next) => {
     if(req.file) req.body.photo = req.file.filename;
     
     const newUser = await User.create({
         name: req.body.name,
-        email: req.body.email,
+        email: req.body.email.replace(/\s/g, ''),
         country: req.body.country,
         phone: req.body.phone,
         role: req.body.role,

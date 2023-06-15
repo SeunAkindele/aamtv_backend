@@ -50,6 +50,10 @@ const userSchema = new mongoose.Schema(
             type: Date,
             default: Date.now()
         },
+        expiredAt: {
+            type: Date,
+            default: Date.now()
+        },
         disabled: {
             type: Boolean,
             default: false
