@@ -108,7 +108,15 @@ exports.login = catchAsync(async (req, res, next) => {
     }
 
     // Check if user exists && password is correct
-    const user = await User.findOne({ email }).select('+password');
+    let user = await User.findOne({ email }).select('+password');
+
+    const currentDate = new Date();
+    const expiredDate = new Date(user.expiredAt);
+    
+    // validating subscription date
+    if(expiredDate <= currentDate) {
+        user.expired = true;
+    }
 
     if(!user || !(await user.correctPassword(password, user.password))) {
         return next(new AppError('Incorrect email or password', 401));

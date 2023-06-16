@@ -3,6 +3,7 @@ const mongoose = require("mongoose");
 const validator = require('validator');
 const bcrypt = require('bcryptjs');
 const otpToken = require('../utils/otpToken');
+const AppError = require('../utils/appError');
 
 const userSchema = new mongoose.Schema(
     {
@@ -93,6 +94,10 @@ const userSchema = new mongoose.Schema(
                 message: 'Please tell us just a little about yourself'
             }
         },
+        expired: {
+            type: Boolean,
+            default: false,
+        },
         active: {
             type: Boolean,
             default: true
@@ -104,7 +109,7 @@ const userSchema = new mongoose.Schema(
         verificationResetToken: String,
         verificationResetExpires: Date,
         passwordResetToken: String,
-        passwordResetExpires: Date
+        passwordResetExpires: Date,
     },
     {
         toJSON: { virtuals: true },
@@ -164,6 +169,11 @@ userSchema.methods.checkActive = function() {
 
     return false;
 };
+
+// userSchema.post(/^find/, function(doc, next) {
+    
+//     next();
+// });
 
 // checking if password has been changed after token was issued
 userSchema.methods.changedPasswordAfter = function(JWTTimestamp) {
