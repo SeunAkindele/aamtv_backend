@@ -102,6 +102,11 @@ exports.signup = catchAsync(async (req, res, next) => {
 exports.pinLogin = catchAsync(async (req, res, next) => {
     const {email} = req.body;
     let user = await User.findOne({ email });
+
+    if(!user) {
+        return next(new AppError('You are logged out, kindly login to gain access', 401));
+    }
+
     const currentDate = new Date();
     const expiredDate = new Date(user.expiredAt);
     
@@ -109,6 +114,11 @@ exports.pinLogin = catchAsync(async (req, res, next) => {
     if(expiredDate <= currentDate) {
         user.expired = true;
     }
+
+    if(await user.checkActive()) {
+        return next(new AppError('Your account is not active, please contact the administrator!', 401));
+    }
+
     createSendToken(user, 200, res);
 });
 
