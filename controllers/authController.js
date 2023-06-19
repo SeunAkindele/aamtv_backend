@@ -95,8 +95,21 @@ exports.signup = catchAsync(async (req, res, next) => {
 
     const url = `${req.protocol}://${req.get('host')}/signup`;
 
-    await new Email(newUser, url).sendWelcome();
+    // await new Email(newUser, url).sendWelcome();
     createSendToken(newUser, 201, res);
+});
+
+exports.pinLogin = catchAsync(async (req, res, next) => {
+    const {email} = req.body;
+    let user = await User.findOne({ email });
+    const currentDate = new Date();
+    const expiredDate = new Date(user.expiredAt);
+    
+    // validating subscription date
+    if(expiredDate <= currentDate) {
+        user.expired = true;
+    }
+    createSendToken(user, 200, res);
 });
 
 exports.login = catchAsync(async (req, res, next) => {
@@ -108,7 +121,11 @@ exports.login = catchAsync(async (req, res, next) => {
     }
 
     // Check if user exists && password is correct
-    let user = await User.findOne({ email }).select('+password');
+    let user = await User.findOne({ email });
+
+    if(!user || !(await user.correctPassword(password, user.password))) {
+        return next(new AppError('Incorrect email or password', 401));
+    }
 
     const currentDate = new Date();
     const expiredDate = new Date(user.expiredAt);
@@ -116,10 +133,6 @@ exports.login = catchAsync(async (req, res, next) => {
     // validating subscription date
     if(expiredDate <= currentDate) {
         user.expired = true;
-    }
-
-    if(!user || !(await user.correctPassword(password, user.password))) {
-        return next(new AppError('Incorrect email or password', 401));
     }
 
     if(await user.checkActive()) {
