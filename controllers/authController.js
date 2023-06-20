@@ -107,6 +107,8 @@ exports.pinLogin = catchAsync(async (req, res, next) => {
         return next(new AppError('You are logged out, kindly login to gain access', 401));
     }
 
+    user.password = undefined;
+
     const currentDate = new Date();
     const expiredDate = new Date(user.expiredAt);
     
@@ -144,6 +146,8 @@ exports.login = catchAsync(async (req, res, next) => {
     if(expiredDate <= currentDate) {
         user.expired = true;
     }
+
+    user.password = undefined;
 
     if(await user.checkActive()) {
         return next(new AppError('Your account is not active, please contact the administrator!', 401));
