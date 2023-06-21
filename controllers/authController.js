@@ -283,3 +283,26 @@ exports.updatePassword = catchAsync(async (req, res, next) => {
     // Log user in, send jwt
     createSendToken(user, 200, res);
 });
+
+exports.subscribe = catchAsync(async (req, res, next) => {
+    const currentDate = new Date();
+    
+    const {email, plan} = req.body;
+
+    const user = await User.findOne({ email });
+
+    if(!user) {
+        return next(new AppError('There is no user with this email!', 404));
+    }
+    // Set the date to this time next month
+
+    const expiryDate = plan === "monthly" ? 
+    new Date(currentDate.getFullYear(), currentDate.getMonth() + 1, currentDate.getDate(), currentDate.getHours(), currentDate.getMinutes(), currentDate.getSeconds()) : 
+    new Date(currentDate.getFullYear() + 1, currentDate.getMonth(), currentDate.getDate(), currentDate.getHours(), currentDate.getMinutes(), currentDate.getSeconds());
+
+    user.expiredAt = expiryDate.toISOString();
+
+    await user.save({ validateBeforeSave: false });
+
+    createSendToken(user, 200, res);
+});

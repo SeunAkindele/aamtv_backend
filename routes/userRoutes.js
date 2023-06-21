@@ -12,6 +12,7 @@ router.patch('/resetPassword', authController.resetPassword);
 router.use(authController.protect);
 
 router.post('/pinLogin', authController.pinLogin);
+router.post('/subscribe', authController.subscribe);
 router.post('/sendverification', authController.sendVerification);
 router.post('/verification', authController.verification);
 router.patch('/updatePassword', authController.updatePassword);
