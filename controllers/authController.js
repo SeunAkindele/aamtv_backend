@@ -3,6 +3,7 @@ const bcrypt = require('bcryptjs');
 const { promisify } = require('util');
 const jwt = require('jsonwebtoken');
 const User = require('../models/userModel');
+const Subscription = require('../models/subscriptionModel');
 const catchAsync = require('../utils/catchAsync');
 const AppError = require('../utils/appError');
 const Email = require('../utils/email');
@@ -132,8 +133,10 @@ exports.login = catchAsync(async (req, res, next) => {
         return next(new AppError('Please provide email and password!', 400))
     }
 
+    const trimedEmail = email.replace(/\s/g, '');
+
     // Check if user exists && password is correct
-    let user = await User.findOne({ email });
+    let user = await User.findOne({ email: trimedEmail });
 
     if(!user || !(await user.correctPassword(password, user.password))) {
         return next(new AppError('Incorrect email or password', 401));
@@ -286,8 +289,7 @@ exports.updatePassword = catchAsync(async (req, res, next) => {
 
 exports.subscribe = catchAsync(async (req, res, next) => {
     const currentDate = new Date();
-    
-    const {email, plan} = req.body;
+    const {email, plan, userId, transactionRef, amount} = req.body;
 
     const user = await User.findOne({ email });
 
@@ -303,6 +305,14 @@ exports.subscribe = catchAsync(async (req, res, next) => {
     user.expiredAt = expiryDate.toISOString();
 
     await user.save({ validateBeforeSave: false });
+
+    await Subscription.create({
+        user: userId,
+        plan,
+        transactionRef,
+        amount,
+        expiredAt: user.expiredAt
+    });
 
     createSendToken(user, 200, res);
 });
