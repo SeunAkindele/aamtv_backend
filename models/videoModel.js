@@ -10,6 +10,12 @@ const videoSchema = new mongoose.Schema({
         maxlength: [50, 'A video title must not have more than 50 characters'],
         minlength: [3, 'A video title must have more than 2 characters']
     },
+    info: {
+        type: String,
+        required: [true, 'A video must have some information'],
+        maxlength: [50, 'A video title must not have more than 50 characters'],
+        minlength: [3, 'A video title must have more than 2 characters']
+    },
     slug: String,
     src: {
         type: String,
@@ -29,6 +35,11 @@ const videoSchema = new mongoose.Schema({
     artist: {
         type: mongoose.Schema.ObjectId,
         ref: 'Follower'
+    },
+    user: {
+        type: mongoose.Schema.ObjectId,
+        ref: 'User',
+        required: [true, 'A video must belong to an artist']
     },
     createdAt: {
         type: Date,
@@ -54,15 +65,28 @@ videoSchema.pre('save', function(next) {
 });
 
 // // Virtual populate
-// videoSchema.virtual('comments', {
-//     ref: 'Comment',
-//     foreignField: 'video',
-//     localField: '_id'
-// });
+videoSchema.virtual('comments', {
+    ref: 'Comment',
+    foreignField: 'video',
+    localField: '_id'
+});
 
 // runs immediately after the document is saved
 videoSchema.post('save', function(doc, next) {
-    
+    this.populate({
+        path: 'user',
+        select: '-__v -passwordChangedAt -active -disabled -artists -email -role'
+    });
+
+    next();
+});
+
+videoSchema.pre(/^find/, function(next) {
+    this.populate({
+        path: 'user',
+        select: 'name photo _id createdAt'
+    });
+
     next();
 });
 
