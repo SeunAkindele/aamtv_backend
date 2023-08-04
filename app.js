@@ -20,6 +20,9 @@ const countryRouter = require('./routes/countryRoutes');
 // Initializes express
 const app = express();
 
+const publicDirectoryPath = path.join(__dirname, 'assets');
+app.use(express.static(publicDirectoryPath));
+
 // Protection
 app.use(helmet());
 
