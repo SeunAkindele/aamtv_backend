@@ -22,6 +22,7 @@ const countryRouter = require('./routes/countryRoutes');
 const app = express();
 
 
+app.use(express.static(`${__dirname}/assets`));
 
 // Protection
 app.use(helmet());
@@ -68,8 +69,6 @@ app.use('/api/v1/views', viewRouter);
 app.use('/api/v1/followers', followerRouter);
 app.use('/api/v1/list', listRouter);
 app.use('/api/v1/countries', countryRouter);
-
-app.use(express.static('assets'));
 
 app.all('*', (req, res, next) => {
     // express automatically see a next with parameter as an error, and then jumps all the middleware to the error middleware

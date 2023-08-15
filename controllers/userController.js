@@ -113,7 +113,8 @@ exports.updateUser = factory.updateOne(User);
 exports.deleteUser = factory.deleteOne(User);
 
 exports.getArtists = catchAsync( async (req, res, next) => {
-    const features = new APIFeatures(User.find({role: 'artist'}), req.query)
+    const obj = req.query.country != "" ? {role: 'artist', country: req.query.country} : {role: 'artist'};
+    const features = new APIFeatures(User.find(obj), req.query)
     .lazyLoader()
     .sortByTime();
 
