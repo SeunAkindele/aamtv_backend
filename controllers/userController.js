@@ -118,7 +118,7 @@ exports.getArtists = catchAsync( async (req, res, next) => {
     .lazyLoader()
     .sortByTime();
 
-    const data = await features.query.populate('followers');
+    const data = await features.query.populate('followers videos');
 
     res.status(200).json({
         status: 'success',

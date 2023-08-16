@@ -17,6 +17,11 @@ router.route('/:id')
         followerController.setArtistUserIds, 
         followerController.follow
     )
+    .get(
+        authController.restrictTo('artist', 'user'), 
+        followerController.setArtistUserIds, 
+        followerController.checkFollowing
+    )
     .delete(followerController.unFollow);
 
 module.exports = router;

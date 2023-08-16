@@ -146,6 +146,13 @@ userSchema.virtual('followers', {
     count: true
 });
 
+userSchema.virtual('videos', {
+    ref: 'Video',
+    foreignField: 'user',
+    localField: '_id',
+    count: true
+});
+
 // userSchema.virtual('following', {
 //     ref: 'Follower',
 //     foreignField: 'artist',

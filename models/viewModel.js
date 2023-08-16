@@ -7,11 +7,13 @@ viewSchema = new mongoose.Schema({
     },
     video: {
         type: mongoose.Schema.ObjectId,
-        ref: 'Video'
+        ref: 'Video',
+        unique: true,
     },
     user: {
         type: mongoose.Schema.ObjectId,
-        ref: 'User'
+        ref: 'User',
+        unique: true,
     }
 },
 {
