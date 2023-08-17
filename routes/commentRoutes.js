@@ -17,4 +17,6 @@ router.route('/:id')
     .patch(authController.restrictTo('artist', 'user'), commentController.updateComment)
     .delete(commentController.deleteComment);
 
+router.get('/count/:id', commentController.getCommentCounts);
+
 module.exports = router;

@@ -12,4 +12,4 @@ exports.like = factory.createOne(Like);
 
 exports.getLikes = factory.getCountIsExist(Like, "video");
 
-exports.unlike = factory.deleteOne(Like);
+exports.unlike = factory.deleteCustomOne(Like, "video");

@@ -32,4 +32,6 @@ router.route('/:id')
         videoController.deleteVideo
     );
 
+router.get('/getArtistVideos/:id', authController.protect, videoController.getVideosByArtist);
+
 module.exports = router;

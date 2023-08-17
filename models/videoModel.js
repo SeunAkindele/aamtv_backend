@@ -29,7 +29,7 @@ const videoSchema = new mongoose.Schema({
     },
     category: {
         type: String,
-        enum: ['video', 'documentary', 'live'],
+        enum: ['music', 'documentary', 'live', 'fashion', 'tourism'],
         default: 'video'
     },
     artist: {

@@ -7,10 +7,12 @@ exports.setVideoUserIds = (req, res, next) => {
     req.body.user = req.user.id;
     req.body.video = req.params.id;
     next();
-}
+};
 
 exports.createComment = factory.createOne(Comment);
 
 exports.updateComment = factory.updateOne(Comment);
 
 exports.deleteComment = factory.deleteOne(Comment);
+
+exports.getCommentCounts = factory.getCountIsExist(Comment, "video");

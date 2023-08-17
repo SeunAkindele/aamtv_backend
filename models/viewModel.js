@@ -5,15 +5,14 @@ viewSchema = new mongoose.Schema({
         type: Date,
         default: Date.now()
     },
-    video: {
-        type: mongoose.Schema.ObjectId,
-        ref: 'Video',
-        unique: true,
-    },
     user: {
         type: mongoose.Schema.ObjectId,
         ref: 'User',
         unique: true,
+    },
+    video: {
+        type: mongoose.Schema.ObjectId,
+        ref: 'Video'
     }
 },
 {
@@ -21,6 +20,7 @@ viewSchema = new mongoose.Schema({
     toObject: { virtuals: true }
 }
 );
+
 
 const View = mongoose.model('View', viewSchema);
 

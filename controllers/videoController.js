@@ -5,6 +5,8 @@ const factory = require('./handlerFactory');
 
 exports.getVideos = factory.getAll(Video);
 
+exports.getVideosByArtist = factory.getArtistVideos(Video);
+
 exports.getVideo = factory.getOne(Video);
 
 exports.createVideo = factory.createOne(Video);
