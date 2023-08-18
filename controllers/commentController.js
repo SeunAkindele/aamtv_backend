@@ -13,6 +13,6 @@ exports.createComment = factory.createOne(Comment);
 
 exports.updateComment = factory.updateOne(Comment);
 
-exports.deleteComment = factory.deleteOne(Comment);
+exports.deleteComment = factory.deleteCustomOne(Comment, "video");
 
 exports.getCommentCounts = factory.getCountIsExist(Comment, "video");
