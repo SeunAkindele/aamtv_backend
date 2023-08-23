@@ -15,7 +15,7 @@ exports.deleteOne = Model => catchAsync(async (req, res, next) => {
     });
 });
 exports.deleteCustomOne = (Model, prop) => catchAsync(async (req, res, next) => {
-    const data = await Model.findOneAndDelete({[prop]: req.params.id});
+    const data = await Model.findOneAndDelete({[prop]: req.params.id, user: req.user.id});
 
     if(!data) {
         return next(new AppError('No document found with that ID', 404));
