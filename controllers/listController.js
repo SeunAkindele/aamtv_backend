@@ -27,6 +27,6 @@ exports.getMyList = catchAsync( async (req, res, next) => {
     });
 });
 
-exports.unList = factory.deleteOne(List);
+exports.unList = factory.deleteCustomOne(List, "video");
 
 exports.checkList = factory.getCountIsExist(List, "video");
