@@ -15,6 +15,11 @@ router.route('/:id')
         listController.setVideoUserIds, 
         listController.addList
     )
+    .get(
+        authController.restrictTo('artist', 'user'), 
+        listController.setVideoUserIds, 
+        listController.checkList
+    )
     .delete(listController.unList);
 
 module.exports = router;
