@@ -18,11 +18,20 @@ exports.getMyFollowers = catchAsync( async (req, res, next) => {
 
     const data = await features.query;
 
+    const arr = [];
+
+    await Promise.all(
+        data.map(async (follower) => {
+          const isFollowedBack = await Follower.exists({ artist: follower.user._id, user: req.user.id });
+          arr.push({ follower: follower.user, isFollowedBack });
+        })
+    );
+
     res.status(200).json({
         status: 'success',
-        results: data.length,
+        results: arr.length,
         data: {
-            data
+            data: arr
         }
     });
 });
@@ -74,5 +83,9 @@ exports.getMyArtists = catchAsync( async (req, res, next) => {
         }
     });
 });
+
+exports.getFollowing = factory.getCountIsExist(Follower);
+
+exports.getFollowers = factory.getCountIsExist(Follower, "artist");
 
 exports.unFollow = factory.deleteOne(Follower);

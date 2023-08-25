@@ -138,11 +138,11 @@ exports.search = (Model, col) => catchAsync(async (req, res, next) => {
 exports.getCountIsExist = (Model, prop) => catchAsync( async (req, res, next) => {
 
     let isExist = false;
-    const data = await Model.findOne({[prop]: req.params.id, user: req.user.id});
+    const data = prop ? await Model.findOne({[prop]: req.params.id, user: req.user.id}) : await Model.findOne({user: req.user.id});
 
     if(data) isExist = true;
 
-    let count = await Model.countDocuments({[prop]: req.params.id});
+    let count = prop ? await Model.countDocuments({[prop]: req.params.id}) : await Model.countDocuments({user: req.params.id});
 
     res.status(200).json({
         status: 'success',
