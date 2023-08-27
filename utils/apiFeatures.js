@@ -8,7 +8,7 @@ class APIFeatures {
     lazyLoader() {
         const skip = parseInt(this.queryString.skip);
         // skip & limit for lazy loader
-        this.query = this.query.skip(skip).limit(8);
+        this.query = this.query.skip(skip).limit(7);
         
         return this;
     }
