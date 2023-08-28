@@ -10,7 +10,8 @@ router.use(authController.protect);
 router.get('/myFollowers', authController.restrictTo('artist'), followerController.getMyFollowers);
 router.get('/artistFollowers/:id', authController.restrictTo('user'), followerController.getArtistFollowers);
 router.get('/myArtists', authController.restrictTo('artist', 'user'), followerController.getMyArtists);
-router.get('/myFollowing/:id', authController.restrictTo('artist', 'user'), followerController.setArtistUserIds, followerController.getFollowing);
+router.get('/myFollowingCount/:id', authController.restrictTo('artist', 'user'), followerController.setArtistUserIds, followerController.getFollowing);
+router.get('/myFollowings', authController.restrictTo('artist', 'user'), followerController.setArtistUserIds, followerController.getMyFollowing);
 router.get('/myFollowersCount/:id', authController.restrictTo('artist'), followerController.setArtistUserIds, followerController.getFollowers);
 
 router.route('/:id')

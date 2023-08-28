@@ -36,6 +36,22 @@ exports.getMyFollowers = catchAsync( async (req, res, next) => {
     });
 });
 
+exports.getMyFollowing = catchAsync( async (req, res, next) => {
+    const features = new APIFeatures(Follower.find({user: req.user.id}), req.query)
+    .lazyLoader()
+    .sortByTime();
+
+    const data = await features.query;
+
+    res.status(200).json({
+        status: 'success',
+        results: data.length,
+        data: {
+            data
+        }
+    });
+});
+
 exports.getArtistFollowers = catchAsync( async (req, res, next) => {
     const features = new APIFeatures(Follower.find({artist: req.params.id}), req.query)
     .lazyLoader()
