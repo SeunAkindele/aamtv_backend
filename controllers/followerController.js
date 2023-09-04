@@ -1,4 +1,6 @@
 const Follower = require('../models/followerModel');
+const User = require('../models/userModel');
+const Video = require('../models/videoModel');
 const APIFeatures = require('../utils/apiFeatures');
 const catchAsync = require('../utils/catchAsync');
 const factory = require('./handlerFactory');
@@ -12,7 +14,14 @@ exports.setArtistUserIds = (req, res, next) => {
 exports.follow = factory.createOne(Follower);
 
 exports.getMyFollowers = catchAsync( async (req, res, next) => {
-    const features = new APIFeatures(Follower.find({artist: req.user.id}), req.query)
+    const id = new APIFeatures(User.find({name: { $regex: new RegExp(req.query.search, 'i') }}), req.query)
+    .lazyLoader();
+    const userId = await id.query;
+    // console.log(req.query.search, userId);
+    const features = req.query.search !== "" && userId.length > 0 ? new APIFeatures(Follower.find({user: userId[0]._id, artist: req.user.id}), req.query)
+    .lazyLoader()
+    .sortByTime():
+    new APIFeatures(Follower.find({artist: req.user.id}), req.query)
     .lazyLoader()
     .sortByTime();
 
@@ -23,7 +32,9 @@ exports.getMyFollowers = catchAsync( async (req, res, next) => {
     await Promise.all(
         data.map(async (follower) => {
           const isFollowedBack = await Follower.exists({ artist: follower.user._id, user: req.user.id });
-          arr.push({ follower: follower.user, isFollowedBack });
+          const videos = await Video.countDocuments({artist: follower.user._id});
+          const followers = await Follower.countDocuments({artist: follower.user._id});
+          arr.push({ follower: follower.user, isFollowedBack, videos, followers });
         })
     );
 
@@ -37,17 +48,35 @@ exports.getMyFollowers = catchAsync( async (req, res, next) => {
 });
 
 exports.getMyFollowing = catchAsync( async (req, res, next) => {
-    const features = new APIFeatures(Follower.find({user: req.user.id}), req.query)
+    const id = new APIFeatures(User.find({name: { $regex: new RegExp(req.query.search, 'i') }, role: 'artist'}), req.query)
+    .lazyLoader();
+    const userId = await id.query;
+    // console.log(req.query.search, userId);
+    const features = req.query.search !== "" && userId.length > 0 ? new APIFeatures(Follower.find({artist: userId[0]._id, user: req.user.id}), req.query)
+    .lazyLoader()
+    .sortByTime():
+    new APIFeatures(Follower.find({user: req.user.id}), req.query)
     .lazyLoader()
     .sortByTime();
 
     const data = await features.query;
 
+    const arr = [];
+
+    await Promise.all(
+        data.map(async (following) => {
+          const videos = await Video.countDocuments({artist: following.artist._id});
+          const followers = await Follower.countDocuments({artist: following.artist._id});
+          arr.push({ user: following.user, artist: following.artist, videos, followers });
+        })
+    );
+
+
     res.status(200).json({
         status: 'success',
         results: data.length,
         data: {
-            data
+            data: arr
         }
     });
 });
