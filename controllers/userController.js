@@ -83,8 +83,10 @@ exports.updateMe = async (req, res, next) => {
         return next(new AppError('This route is not for password update', 400));
     }
 
+    if(req.file) req.body.photo = req.file.filename;
+
     // User can update only name, email and profile picture
-    const filteredBody = filterObj(req.body, 'name', 'email');
+    const filteredBody = filterObj(req.body, 'name', 'skill', 'phone', 'role', 'photo', 'introduction');
 
     const user = await User.findByIdAndUpdate(req.user.id, filteredBody, {
         new: true,

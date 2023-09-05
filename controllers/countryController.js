@@ -4,3 +4,5 @@ const factory = require('./handlerFactory');
 exports.getCountries = factory.search(Country, "country");
 
 exports.searchCountry = factory.search(Country, "country");
+
+exports.getCountry = factory.getOne(Country);

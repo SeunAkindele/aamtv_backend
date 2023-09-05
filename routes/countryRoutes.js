@@ -8,4 +8,6 @@ router.get('/countries', countryController.getCountries);
 
 router.get('/searchcountries', countryController.searchCountry);
 
+router.get('/country/:id', countryController.getCountry);
+
 module.exports = router;

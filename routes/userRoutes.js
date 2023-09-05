@@ -17,7 +17,7 @@ router.post('/sendverification', authController.sendVerification);
 router.post('/verification', authController.verification);
 router.patch('/updatePassword', authController.updatePassword);
 router.get('/me', userController.getMe, userController.getUser);
-router.patch('/updateMe', userController.updateMe);
+router.patch('/updateMe', userController.uploadUserPhoto, userController.resizeUserPhoto, userController.updateMe);
 router.delete('/deleteMe', userController.deleteMe);
 
 router.get('/artists', userController.getArtists);
