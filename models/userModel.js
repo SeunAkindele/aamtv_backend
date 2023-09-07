@@ -63,16 +63,6 @@ const userSchema = new mongoose.Schema(
             enum: ['user', 'artist', 'admin'],
             default: 'user'
         },
-        skill: {
-            type: String,
-            validate: {
-                // This only works with CREATE and SAVE
-                validator: function() {
-                    return this.role !== 'artist' || (this.role === 'artist' && this.skill);
-                },
-                message: 'Please provide your skill'
-            }
-        },
         photo: {
             type: String,
             validate: {
@@ -81,6 +71,16 @@ const userSchema = new mongoose.Schema(
                     return this.role !== 'artist' || (this.role === 'artist' && this.photo);
                 },
                 message: 'Please upload your photo'
+            }
+        },
+        skill: {
+            type: String,
+            validate: {
+                // This only works with CREATE and SAVE
+                validator: function() {
+                    return this.role !== 'artist' || (this.role === 'artist' && this.skill);
+                },
+                message: 'Please provide your skill'
             }
         },
         introduction: {

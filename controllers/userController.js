@@ -36,9 +36,12 @@ exports.uploadUserPhoto = upload.single('photo');
 exports.resizeUserPhoto = (req, res, next) => {
     if(!req.file) return next();
 
+   
     for(const key in req.body){
-        if(!req.body[key]) {
-            return next(new AppError(`Kindly provide your ${key}`, 400));
+        if(req.body.role === 'artist'){
+            if(!req.body[key]) {
+                return next(new AppError(`Kindly provide your ${key}`, 400));
+            }
         }
     }
 
@@ -85,16 +88,25 @@ exports.updateMe = async (req, res, next) => {
 
     if(req.file) req.body.photo = req.file.filename;
 
-    // User can update only name, email and profile picture
-    const filteredBody = filterObj(req.body, 'name', 'skill', 'phone', 'role', 'photo', 'introduction');
+    for(const key in req.body){
+        if(req.body.role === 'artist'){
+            if(!req.body[key]) {
+                return next(new AppError(`Kindly provide your ${key}`, 400));
+            }
+        }
+    }
 
-    const user = await User.findByIdAndUpdate(req.user.id, filteredBody, {
+    // User can update only name, email and profile picture
+    // const filteredBody = filterObj(req.body, 'name', 'email', 'phone', 'role');
+
+    const user = await User.findByIdAndUpdate(req.user.id, req.body, {
         new: true,
         runValidators: true
     });
     
     res.status(200).json({
         status: 'success',
+        message: 'Your account update was successful',
         data: {
             user
         }
