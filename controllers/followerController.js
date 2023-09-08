@@ -32,7 +32,7 @@ exports.getMyFollowers = catchAsync( async (req, res, next) => {
     await Promise.all(
         data.map(async (follower) => {
           const isFollowedBack = await Follower.exists({ artist: follower.user._id, user: req.user.id });
-          const videos = await Video.countDocuments({artist: follower.user._id});
+          const videos = await Video.countDocuments({user: follower.user._id});
           const followers = await Follower.countDocuments({artist: follower.user._id});
           arr.push({ follower: follower.user, isFollowedBack, videos, followers });
         })
@@ -47,11 +47,39 @@ exports.getMyFollowers = catchAsync( async (req, res, next) => {
     });
 });
 
+exports.getFollowingVideos = catchAsync( async (req, res, next) => {
+    const features = new APIFeatures(Follower.find({user: req.user.id}), req.query)
+    .lazyLoader()
+    .sortByTime();
+
+    const data = await features.query;
+
+    const arr = [];
+
+    await Promise.all(
+        data.map(async (following) => {
+          const videos = await Video.find({user: following.artist.id});
+          if(videos){
+            arr.push({ videos });
+          }
+        })
+    );
+
+    res.status(200).json({
+        status: 'success',
+        results: data.length,
+        data: {
+            data: arr
+        }
+    });
+
+});
+
 exports.getMyFollowing = catchAsync( async (req, res, next) => {
     const id = new APIFeatures(User.find({name: { $regex: new RegExp(req.query.search, 'i') }, role: 'artist'}), req.query)
     .lazyLoader();
     const userId = await id.query;
-    // console.log(req.query.search, userId);
+    
     const features = req.query.search !== "" && userId.length > 0 ? new APIFeatures(Follower.find({artist: userId[0]._id, user: req.user.id}), req.query)
     .lazyLoader()
     .sortByTime():
@@ -71,12 +99,28 @@ exports.getMyFollowing = catchAsync( async (req, res, next) => {
         })
     );
 
-
     res.status(200).json({
         status: 'success',
         results: data.length,
         data: {
             data: arr
+        }
+    });
+});
+
+exports.getMyFollowingAlone = catchAsync( async (req, res, next) => {
+
+    const features = new APIFeatures(Follower.find({user: req.user.id}), req.query)
+    .lazyLoader()
+    .sortByTime();
+
+    const data = await features.query;
+
+    res.status(200).json({
+        status: 'success',
+        results: data.length,
+        data: {
+            data
         }
     });
 });
