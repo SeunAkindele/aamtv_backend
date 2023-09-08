@@ -47,34 +47,6 @@ exports.getMyFollowers = catchAsync( async (req, res, next) => {
     });
 });
 
-exports.getFollowingVideos = catchAsync( async (req, res, next) => {
-    const features = new APIFeatures(Follower.find({user: req.user.id}), req.query)
-    .lazyLoader()
-    .sortByTime();
-
-    const data = await features.query;
-
-    const arr = [];
-
-    await Promise.all(
-        data.map(async (following) => {
-          const videos = await Video.find({user: following.artist.id});
-          if(videos){
-            arr.push({ videos });
-          }
-        })
-    );
-
-    res.status(200).json({
-        status: 'success',
-        results: data.length,
-        data: {
-            data: arr
-        }
-    });
-
-});
-
 exports.getMyFollowing = catchAsync( async (req, res, next) => {
     const id = new APIFeatures(User.find({name: { $regex: new RegExp(req.query.search, 'i') }, role: 'artist'}), req.query)
     .lazyLoader();
@@ -106,6 +78,34 @@ exports.getMyFollowing = catchAsync( async (req, res, next) => {
             data: arr
         }
     });
+});
+
+exports.getFollowingVideos = catchAsync( async (req, res, next) => {
+    const features = new APIFeatures(Follower.find({user: req.user.id}), req.query)
+    .lazyLoader()
+    .sortByTime();
+
+    const data = await features.query;
+
+    const arr = [];
+
+    await Promise.all(
+        data.map(async (following) => {
+            const videos = await Video.find({user: following.artist.id});
+            if(videos.length > 0){
+                arr.push({ videos });
+            }
+        })
+    );
+
+    res.status(200).json({
+        status: 'success',
+        results: data.length,
+        data: {
+            data: arr
+        }
+    });
+
 });
 
 exports.getMyFollowingAlone = catchAsync( async (req, res, next) => {
