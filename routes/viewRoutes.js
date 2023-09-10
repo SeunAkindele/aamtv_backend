@@ -7,6 +7,8 @@ const router = express.Router();
 
 router.use(authController.protect);
 
+router.get('/trendiest', authController.restrictTo('artist', 'user'), viewController.getTrendiest);
+
 router.route('/:id')
     .post( 
         authController.restrictTo('artist', 'user'), 

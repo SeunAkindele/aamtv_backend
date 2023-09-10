@@ -38,7 +38,8 @@ const deleteUserPhoto = async (id) => {
     const user = await User.findOne({ _id: id });
     
     if(user.photo){
-        deleteFile(`../assets/profile-images/${user.photo}`);
+        // deleteFile(`./../aamtv_backend/assets/profile-images/${user.photo}`);
+        deleteFile(`${__dirname}/../assets/profile-images/${user.photo}`);
     }
 }
 
