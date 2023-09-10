@@ -14,7 +14,6 @@ router.get('/myFollowingCount/:id', authController.restrictTo('artist', 'user'),
 router.get('/myFollowings', authController.restrictTo('artist', 'user'), followerController.setArtistUserIds, followerController.getMyFollowing);
 router.get('/myFollowersCount/:id', authController.restrictTo('artist', 'user'), followerController.setArtistUserIds, followerController.getFollowers);
 router.get('/getFollowingVideos', authController.restrictTo('artist', 'user'), followerController.getFollowingVideos);
-router.get('/getMyFollowingAlone', authController.restrictTo('artist', 'user'), followerController.getMyFollowingAlone);
 
 router.route('/:id')
     .post( 

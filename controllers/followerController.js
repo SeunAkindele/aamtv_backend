@@ -65,7 +65,7 @@ exports.getMyFollowing = catchAsync( async (req, res, next) => {
 
     await Promise.all(
         data.map(async (following) => {
-          const videos = await Video.countDocuments({artist: following.artist._id});
+          const videos = await Video.countDocuments({user: following.artist._id});
           const followers = await Follower.countDocuments({artist: following.artist._id});
           arr.push({ user: following.user, artist: following.artist, videos, followers });
         })
@@ -108,23 +108,6 @@ exports.getFollowingVideos = catchAsync( async (req, res, next) => {
 
 });
 
-exports.getMyFollowingAlone = catchAsync( async (req, res, next) => {
-
-    const features = new APIFeatures(Follower.find({user: req.user.id}), req.query)
-    .lazyLoader()
-    .sortByTime();
-
-    const data = await features.query;
-
-    res.status(200).json({
-        status: 'success',
-        results: data.length,
-        data: {
-            data
-        }
-    });
-});
-
 exports.getArtistFollowers = catchAsync( async (req, res, next) => {
     const features = new APIFeatures(Follower.find({artist: req.params.id}), req.query)
     .lazyLoader()
@@ -164,11 +147,21 @@ exports.getMyArtists = catchAsync( async (req, res, next) => {
 
     const data = await features.query;
 
+    const arr = [];
+
+    await Promise.all(
+        data.map(async (following) => {
+          const videos = await Video.countDocuments({user: following.artist._id});
+          const followers = await Follower.countDocuments({artist: following.artist._id});
+          arr.push({ user: following.user, artist: following.artist, videos, followers });
+        })
+    );
+
     res.status(200).json({
         status: 'success',
         results: data.length,
         data: {
-            data
+            data: arr
         }
     });
 });

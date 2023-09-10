@@ -26,6 +26,11 @@ class APIFeatures {
 
         return this;
     }
+
+    // sort by appearance in descending order
+    sortByAppearance() {
+        
+    }
 }
 
 module.exports = APIFeatures;

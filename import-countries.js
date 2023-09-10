@@ -2,6 +2,7 @@ const fs = require('fs');
 const mongoose = require('mongoose');
 const dotenv= require('dotenv');
 const Country = require('./models/countryModel');
+const { deleteFile } = require('./utils/deleteFile');
 
 dotenv.config({ path: './config.env' });
 

@@ -5,6 +5,7 @@ const catchAsync = require('../utils/catchAsync');
 const AppError = require('../utils/appError');
 const factory = require('./handlerFactory');
 const APIFeatures = require('../utils/apiFeatures');
+const { deleteFile } = require('../utils/deleteFile');
 
 // const multerStorage = multer.diskStorage({
 //     destination: (req, file, cb) => {
@@ -33,10 +34,17 @@ const upload = multer({
 
 exports.uploadUserPhoto = upload.single('photo');
 
+const deleteUserPhoto = async (id) => {
+    const user = await User.findOne({ _id: id });
+    
+    if(user.photo){
+        deleteFile(`../assets/profile-images/${user.photo}`);
+    }
+}
+
 exports.resizeUserPhoto = (req, res, next) => {
     if(!req.file) return next();
 
-   
     for(const key in req.body){
         if(req.body.role === 'artist'){
             if(!req.body[key]) {
@@ -44,6 +52,9 @@ exports.resizeUserPhoto = (req, res, next) => {
             }
         }
     }
+
+    // delete user's current photo
+    deleteUserPhoto(req.user.id);
 
     req.file.filename = `user-${req.body.email}-${Date.now()}.jpeg`;
 

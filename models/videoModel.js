@@ -13,7 +13,7 @@ const videoSchema = new mongoose.Schema({
     info: {
         type: String,
         required: [true, 'A video must have some information'],
-        maxlength: [50, 'A video title must not have more than 50 characters'],
+        maxlength: [200, 'A video info must not have more than 50 characters'],
         minlength: [3, 'A video title must have more than 2 characters']
     },
     slug: String,
