@@ -9,6 +9,23 @@ exports.setVideoUserIds = (req, res, next) => {
 }
 
 exports.like = factory.createOne(Like);
+exports.like =  catchAsync(async (req, res, next) => {
+    
+    const count = await Like.countDocuments({video: req.params.id, user: req.user.id});
+    let data = [];
+
+    if(count < 1){
+        data = await Like.create(req.body);
+    }
+
+    res.status(201).json({
+        status: 'success',
+        data: {
+            data
+        }
+    });
+    
+});
 
 exports.getLikes = factory.getCountIsExist(Like, "video");
 

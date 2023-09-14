@@ -11,7 +11,25 @@ exports.setVideoUserIds = (req, res, next) => {
     next();
 }
 
-exports.view = factory.createOne(View);
+// exports.view = factory.createOne(View);
+
+exports.view =  catchAsync(async (req, res, next) => {
+    
+    const count = await View.countDocuments({video: req.params.id, user: req.user.id});
+    let data = [];
+
+    if(count < 1){
+        data = await View.create(req.body);
+    }
+
+    res.status(201).json({
+        status: 'success',
+        data: {
+            data
+        }
+    });
+
+});
 
 exports.getViews = factory.getCountIsExist(View, "video");
 
@@ -20,8 +38,8 @@ exports.getTrendiest = catchAsync( async (req, res, next) => {
     const data = await View.aggregate([
         {
             $group: {
-            _id: '$video',
-            viewsCount: { $sum: 1 }, // Count the number of times a videoId appears
+                _id: '$video',
+                viewsCount: { $sum: 1 }, // Count the number of times a videoId appears
             },
         },
         {
@@ -47,9 +65,9 @@ exports.getTrendiest = catchAsync( async (req, res, next) => {
 
     await Promise.all(
         data.map(async (item) => {
-          const user = await User.findOne({_id: item.video.user});
-          const video = {...item, video: {...item.video, user}};
-          arr.push(video);
+            const user = await User.findOne({_id: item.video.user});
+            const video = {...item, video: {...item.video, user}};
+            arr.push(video);
         })
     );
 

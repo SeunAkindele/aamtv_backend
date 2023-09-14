@@ -82,8 +82,8 @@ exports.getMyFollowing = catchAsync( async (req, res, next) => {
 
 exports.getFollowingVideos = catchAsync( async (req, res, next) => {
     const features = new APIFeatures(Follower.find({user: req.user.id}), req.query)
-    .lazyLoader()
-    .sortByTime();
+    .sortByTime()
+    .limit();
 
     const data = await features.query;
 
@@ -91,7 +91,7 @@ exports.getFollowingVideos = catchAsync( async (req, res, next) => {
 
     await Promise.all(
         data.map(async (following) => {
-            const videos = await Video.find({user: following.artist.id});
+            const videos = await Video.find({user: following.artist._id});
             if(videos.length > 0){
                 arr.push({ videos });
             }
