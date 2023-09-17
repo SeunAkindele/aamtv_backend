@@ -34,7 +34,14 @@ exports.view =  catchAsync(async (req, res, next) => {
 exports.getViews = factory.getCountIsExist(View, "video");
 
 exports.getTrendiest = catchAsync( async (req, res, next) => {
-   
+    const category =  req.params.category !== "all" ? {
+            $match: {
+            'video.category': req.params.category
+            }
+        } : { $match: {
+            'video.category': { $ne: '' }
+        }};
+
     const data = await View.aggregate([
         {
             $group: {
@@ -56,13 +63,14 @@ exports.getTrendiest = catchAsync( async (req, res, next) => {
                 as: 'video',
             },
         },
+        category,
         {
             $unwind: '$video',
         },
     ]);
 
     const arr = [];
-
+    
     await Promise.all(
         data.map(async (item) => {
             const user = await User.findOne({_id: item.video.user});

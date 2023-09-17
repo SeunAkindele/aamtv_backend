@@ -5,7 +5,7 @@ const authController = require('../controllers/authController');
 
 const router = express.Router();
 
-router.route('/')
+router.route('/:category')
     .get(
         authController.protect, 
         videoController.getVideos
