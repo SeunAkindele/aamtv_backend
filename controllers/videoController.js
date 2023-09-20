@@ -3,6 +3,7 @@ const APIFeatures = require('../utils/apiFeatures');
 const catchAsync = require('../utils/catchAsync');
 const factory = require('./handlerFactory');
 const cloudinaryConfig = require('../utils/cloudinary');
+const AppError = require('../utils/appError');
 const cloudinary = require('cloudinary').v2;
 
 exports.getVideos = catchAsync( async (req, res, next) => {
@@ -30,7 +31,7 @@ exports.createVideo = catchAsync(async (req, res, next) => {
     cloudinaryConfig.cloudinaryConfig();
 
     const imageUrl = await cloudinary.uploader.upload(
-        `${__dirname}/../assets/images/${req.body.photo}`, 
+        ``, 
         { folder: 'aamtv/images' }
     )
     .then((result) => {
@@ -39,6 +40,7 @@ exports.createVideo = catchAsync(async (req, res, next) => {
     })
     .catch((error) => {
         console.error('Error uploading image:', error);
+        return next(new AppError(`Kindly provide a valid photo cover file`, 400));
     });
 
     const videoUrl = await cloudinary.uploader.upload(
@@ -50,6 +52,7 @@ exports.createVideo = catchAsync(async (req, res, next) => {
         (error, result) => {
         if (error) {
             console.error('Error uploading video:', error);
+            return next(new AppError(`Kindly provide a valid video file`, 400));
         } else {
             console.log('Video uploaded successfully:', result.secure_url);
             return result.secure_url;
