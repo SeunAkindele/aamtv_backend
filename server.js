@@ -1,6 +1,6 @@
 const mongoose = require('mongoose');
 
-const dotenv= require('dotenv');
+const dotenv = require('dotenv');
 
 // A global handler for catching all exception
 process.on('uncaughtException', err => {
