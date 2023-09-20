@@ -54,8 +54,9 @@ exports.resizeUserPhoto = (req, res, next) => {
         }
     }
 
-    // delete user's current photo
+   if(req.user){ // delete user's current photo
     deleteUserPhoto(req.user.id);
+   }
 
     req.file.filename = `user-${req.body.email}-${Date.now()}.jpeg`;
 

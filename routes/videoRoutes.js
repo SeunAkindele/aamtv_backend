@@ -5,16 +5,18 @@ const authController = require('../controllers/authController');
 
 const router = express.Router();
 
-router.route('/:category')
-    .get(
-        authController.protect, 
-        videoController.getVideos
-    )
+router.route('/')
     .post(
         authController.protect, 
         authController.restrictTo('admin'), 
         videoController.createVideo
     );
+
+router.route('/:category')
+    .get(
+        authController.protect, 
+        videoController.getVideos
+    )
 
 router.route('/:id')
     .get(

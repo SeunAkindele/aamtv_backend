@@ -15,7 +15,7 @@ class APIFeatures {
 
     limit() {
         // limit query rows
-        this.query = this.query.limit(20);
+        this.query = this.query.limit(21);
 
         return this;
     }
