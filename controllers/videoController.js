@@ -31,7 +31,7 @@ exports.createVideo = catchAsync(async (req, res, next) => {
     cloudinaryConfig.cloudinaryConfig();
 
     const imageUrl = await cloudinary.uploader.upload(
-        ``, 
+        `${__dirname}/../assets/images/${req.body.photo}`, 
         { folder: 'aamtv/images' }
     )
     .then((result) => {
