@@ -82,8 +82,8 @@ exports.getMyFollowing = catchAsync( async (req, res, next) => {
 
 exports.getFollowingVideos = catchAsync( async (req, res, next) => {
     const features = new APIFeatures(Follower.find({user: req.user.id}), req.query)
-    .sortByTime()
-    .limit();
+    .lazyLoader()
+    .sortByTime();
 
     const data = await features.query;
 
