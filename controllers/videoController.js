@@ -73,7 +73,6 @@ exports.createVideo = catchAsync(async (req, res, next) => {
     });
 });
 
-
 exports.updateVideo = factory.updateOne(Video);
 
 exports.deleteVideo = factory.deleteOne(Video);

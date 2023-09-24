@@ -30,7 +30,7 @@ const videoSchema = new mongoose.Schema({
     category: {
         type: String,
         enum: ['music', 'documentary', 'live', 'fashion', 'tourism'],
-        default: 'video'
+        default: 'music'
     },
     artist: {
         type: mongoose.Schema.ObjectId,
@@ -40,6 +40,10 @@ const videoSchema = new mongoose.Schema({
         type: mongoose.Schema.ObjectId,
         ref: 'User',
         required: [true, 'A video must belong to an artist']
+    },
+    progress: {
+        type: Number,
+        default: 0
     },
     createdAt: {
         type: Date,
@@ -97,7 +101,6 @@ videoSchema.pre(/^find/, function(next) {
 });
 
 videoSchema.post(/^find/, function(docs, next) {
-    
     next();
 });
 
