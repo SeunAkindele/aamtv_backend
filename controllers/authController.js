@@ -94,10 +94,14 @@ exports.signup = catchAsync(async (req, res, next) => {
         passwordConfirm: req.body.passwordConfirm        
     });
 
-    const url = `${req.protocol}://${req.get('host')}/signup`;
+    // const url = `${req.protocol}://${req.get('host')}/signup`;
 
-    // await new Email(newUser, url).sendWelcome();
+    // await new Email({email: ['oriadeakindele@gmail.com'], name: 'oriade'}, url).sendWelcome();
     createSendToken(newUser, 201, res);
+    // res.status(200).json({
+    //     status: 'success',
+    //     data: {}
+    // });
 });
 
 exports.pinLogin = catchAsync(async (req, res, next) => {
