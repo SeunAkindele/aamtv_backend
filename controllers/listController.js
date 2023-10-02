@@ -9,7 +9,23 @@ exports.setVideoUserIds = (req, res, next) => {
     next();
 }
 
-exports.addList = factory.createOne(List);
+exports.addList =  catchAsync(async (req, res, next) => {
+    
+    const count = await List.countDocuments({video: req.params.id, user: req.user.id});
+    let data = [];
+
+    if(count < 1){
+        data = await List.create(req.body);
+    }
+
+    res.status(201).json({
+        status: 'success',
+        data: {
+            data
+        }
+    });
+    
+});
 
 exports.getMyList = catchAsync( async (req, res, next) => {
     const features = new APIFeatures(List.find({user: req.user.id}), req.query)

@@ -8,7 +8,7 @@ exports.setVideoUserIds = (req, res, next) => {
     next();
 }
 
-exports.like = factory.createOne(Like);
+
 exports.like =  catchAsync(async (req, res, next) => {
     
     const count = await Like.countDocuments({video: req.params.id, user: req.user.id});
