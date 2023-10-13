@@ -17,12 +17,33 @@ searchSchema = new mongoose.Schema({
         type: Date,
         default: Date.now()
     },
+    category: {
+        type: String
+    },
     active: {
         type: Boolean,
         default: true
     }
 },
 );
+
+searchSchema.pre(/^find/, function(next) {
+    this.populate({
+        path: 'video',
+        select: '-__v'
+    });
+
+    next();
+});
+
+searchSchema.pre(/^find/, function(next) {
+    this.populate({
+        path: 'artist',
+        select: '-__v'
+    });
+
+    next();
+});
 
 const Search = mongoose.model('Search', searchSchema);
 

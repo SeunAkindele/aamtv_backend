@@ -17,6 +17,7 @@ const viewRouter = require('./routes/viewRoutes');
 const followerRouter = require('./routes/followerRoutes');
 const listRouter = require('./routes/listRoutes');
 const countryRouter = require('./routes/countryRoutes');
+const searchRouter = require('./routes/searchRoutes');
 
 // Initializes express
 const app = express();
@@ -69,6 +70,7 @@ app.use('/api/v1/views', viewRouter);
 app.use('/api/v1/followers', followerRouter);
 app.use('/api/v1/list', listRouter);
 app.use('/api/v1/countries', countryRouter);
+app.use('/api/v1/search', searchRouter);
 
 app.all('*', (req, res, next) => {
     // express automatically see a next with parameter as an error, and then jumps all the middleware to the error middleware

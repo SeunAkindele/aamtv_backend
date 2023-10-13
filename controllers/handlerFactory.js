@@ -1,6 +1,7 @@
 const catchAsync = require('../utils/catchAsync');
 const AppError = require('../utils/appError');
 const APIFeatures = require('../utils/apiFeatures');
+const Search = require('../models/searchModel');
 
 exports.deleteOne = Model => catchAsync(async (req, res, next) => {
     const data = await Model.findByIdAndDelete(req.params.id);
@@ -131,6 +132,69 @@ exports.search = (Model, col) => catchAsync(async (req, res, next) => {
         results: data.length,
         data: {
             data
+        }
+    });
+});
+
+exports.searchMany = (Model1, Model2, col1, col2) => catchAsync(async (req, res, next) => {
+    let validationObject1= req.query.search != '' ? { [col1]: { $regex: req.query.search, $options: 'i' } } : {};
+    let validationObject2= req.query.search != '' ? { [col2]: { $regex: req.query.search, $options: 'i' } } : {};
+
+    const features1 = new APIFeatures(Model1.find(validationObject1), req.query)
+    .lazyLoader()
+    const features2 = new APIFeatures(Model2.find(validationObject2), req.query)
+    .lazyLoader()
+    
+    const artists = await features1.query;
+    const videos = await features2.query;
+
+    // Saving recent artits searches
+    Model1.findOne({ name: { $regex: new RegExp(req.query.search, 'i') } }, async (err, results) => {
+        if (err) {
+            console.error(err);
+        } else {
+            if(results){
+                let obj = {
+                    artist: results._id,
+                    user: req.user.id,
+                    category: 'artist'
+                }
+                const count = await Search.countDocuments({artist: results._id, user: req.user.id});
+                            
+                if(count < 1){
+                    await Search.create(obj);
+                }
+            }
+        }
+    });
+
+    // Saving recent video searches
+    Model2.findOne({ title: { $regex: new RegExp(req.query.search, 'i') } }, async (err, results) => {
+        
+        if (err) {
+            console.error(err);
+        } else {
+            if(results){
+                let obj = {
+                    video: results._id,
+                    user: req.user.id,
+                    category: 'video'
+                }
+                const count = await Search.countDocuments({video: results._id, user: req.user.id});
+                            
+                if(count < 1){
+                    await Search.create(obj);
+                }
+            }
+        }
+    });
+
+    res.status(200).json({
+        status: 'success',
+        results: artists.length + videos.length,
+        data: {
+            artists,
+            videos
         }
     });
 });

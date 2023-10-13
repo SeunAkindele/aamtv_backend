@@ -1,16 +1,24 @@
-const Country = require('../models/countryModel');
+const Search = require('../models/searchModel');
+const User = require('../models/userModel');
+const Video = require('../models/videoModel');
+const APIFeatures = require('../utils/apiFeatures');
+const catchAsync = require('../utils/catchAsync');
 const factory = require('./handlerFactory');
 
-// exports.getCountries = factory.search(Country, "country");
+exports.searchScreen = factory.searchMany(User, Video, "name", "title");
 
-// exports.searchCountry = factory.search(Country, "country");
+exports.recentSearch = catchAsync( async (req, res, next) => {
+    const features = new APIFeatures(Search.find({user: req.user.id}), req.query)
+    .lazyLoader()
+    .sortByTime();
 
-// const searchTerm = "apple";
+    const data = await features.query;
 
-// YourModel.find({ fieldName: searchTerm }, (err, results) => {
-//   if (err) {
-//     console.error(err);
-//   } else {
-//     console.log(results);
-//   }
-// });
+    res.status(200).json({
+        status: 'success',
+        results: data.length,
+        data: {
+            data
+        }
+    });
+});
