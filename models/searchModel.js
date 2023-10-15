@@ -27,23 +27,23 @@ searchSchema = new mongoose.Schema({
 },
 );
 
-searchSchema.pre(/^find/, function(next) {
-    this.populate({
-        path: 'video',
-        select: '-__v'
-    });
+// searchSchema.pre(/^find/, function(next) {
+//     this.populate({
+//         path: 'video',
+//         select: '-__v'
+//     });
 
-    next();
-});
+//     next();
+// });
 
-searchSchema.pre(/^find/, function(next) {
-    this.populate({
-        path: 'artist',
-        select: '-__v'
-    });
+// searchSchema.pre(/^find/, function(next) {
+//     this.populate({
+//         path: 'artist',
+//         select: '-__v -passwordChangedAt -active -disabled -artists -email -role'
+//     });
 
-    next();
-});
+//     next();
+// });
 
 const Search = mongoose.model('Search', searchSchema);
 
