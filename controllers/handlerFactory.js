@@ -2,6 +2,9 @@ const catchAsync = require('../utils/catchAsync');
 const AppError = require('../utils/appError');
 const APIFeatures = require('../utils/apiFeatures');
 const Search = require('../models/searchModel');
+const Video = require('../models/videoModel');
+const Follower = require('../models/followerModel');
+const User = require('../models/userModel');
 
 exports.deleteOne = Model => catchAsync(async (req, res, next) => {
     const data = await Model.findByIdAndDelete(req.params.id);
@@ -137,26 +140,49 @@ exports.search = (Model, col) => catchAsync(async (req, res, next) => {
 });
 
 exports.searchMany = (Model1, Model2, col1, col2) => catchAsync(async (req, res, next) => {
-    let validationObject1= req.query.search != '' ? { [col1]: { $regex: req.query.search, $options: 'i' } } : {};
+    let validationObject1= req.query.search != '' ? { [col1]: { $regex: req.query.search, $options: 'i'} } : {};
+    const roleCondition = { role: { $regex: /^artist$/i } };
+
+    // Combine the conditions
+    const combinedConditions = {
+    $and: [validationObject1, roleCondition],
+    };
+
     let validationObject2= req.query.search != '' ? { [col2]: { $regex: req.query.search, $options: 'i' } } : {};
 
-    const features1 = new APIFeatures(Model1.find(validationObject1), req.query)
+    const features1 = new APIFeatures(Model1.find(combinedConditions), req.query)
     .limit()
-    .sortByTime();
-    
     const features2 = new APIFeatures(Model2.find(validationObject2), req.query)
     .limit()
-    .sortByTime();
     
     const artists = await features1.query;
     const videos = await features2.query;
 
+    const arr=[];
+
+    await Promise.all(
+        artists.map(async (result) => {
+            const videos = await Video.countDocuments({user: result._id});
+            const followers = await Follower.countDocuments({artist: result._id});
+            const user = await User.findOne({_id: result._id});
+            
+            arr.push({ artist: user, videos, followers, category: 'artist' });
+        })
+    );
+
+    await Promise.all(
+        videos.map(async (result) => {
+            const video = await Video.findOne({_id: result._id});
+            arr.push({video, category: 'video'});
+        })
+    );    
+
     // Saving recent artits searches
-    Model1.findOne({ name: { $regex: new RegExp(req.query.search, 'i') } }, async (err, results) => {
+    Model1.findOne({ name: { $regex: new RegExp(`^${req.query.search}$`, 'i') } }, async (err, results) => {
         if (err) {
             console.error(err);
         } else {
-            if(results){
+            if(results && results.role==='artist'){
                 let obj = {
                     artist: results._id,
                     user: req.user.id,
@@ -172,7 +198,7 @@ exports.searchMany = (Model1, Model2, col1, col2) => catchAsync(async (req, res,
     });
 
     // Saving recent video searches
-    Model2.findOne({ title: { $regex: new RegExp(req.query.search, 'i') } }, async (err, results) => {
+    Model2.findOne({ title: { $regex: new RegExp(`^${req.query.search}$`, 'i') } }, async (err, results) => {
         
         if (err) {
             console.error(err);
@@ -196,8 +222,7 @@ exports.searchMany = (Model1, Model2, col1, col2) => catchAsync(async (req, res,
         status: 'success',
         results: artists.length + videos.length,
         data: {
-            artists,
-            videos
+            data: arr
         }
     });
 });
