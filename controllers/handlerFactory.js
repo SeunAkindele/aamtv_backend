@@ -141,9 +141,12 @@ exports.searchMany = (Model1, Model2, col1, col2) => catchAsync(async (req, res,
     let validationObject2= req.query.search != '' ? { [col2]: { $regex: req.query.search, $options: 'i' } } : {};
 
     const features1 = new APIFeatures(Model1.find(validationObject1), req.query)
-    .lazyLoader()
+    .limit()
+    .sortByTime();
+    
     const features2 = new APIFeatures(Model2.find(validationObject2), req.query)
-    .lazyLoader()
+    .limit()
+    .sortByTime();
     
     const artists = await features1.query;
     const videos = await features2.query;
