@@ -39,3 +39,7 @@ exports.recentSearch = catchAsync( async (req, res, next) => {
         }
     });
 });
+
+exports.saveSearchedArtist = factory.saveSearchedArtist();
+
+exports.saveSearchedVideo = factory.saveSearchedVideo();

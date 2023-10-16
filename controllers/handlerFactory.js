@@ -227,6 +227,32 @@ exports.searchMany = (Model1, Model2, col1, col2) => catchAsync(async (req, res,
     });
 });
 
+exports.saveSearchedArtist = () => catchAsync( async (req, res, next) => {
+    const count = await Search.countDocuments({artist: req.body.artist, user: req.user.id});
+                            
+    if(count < 1){
+        await Search.create({artist: req.body.artist, user: req.user.id, category: 'artist'});
+    }
+
+    res.status(200).json({
+        status: 'success',
+        data: []
+    });
+});
+
+exports.saveSearchedVideo = () => catchAsync( async (req, res, next) => {
+    const count = await Search.countDocuments({video: req.body.video, user: req.user.id});
+           
+    if(count < 1){
+        await Search.create({video: req.body.video, user: req.user.id, category: 'video'});
+    }
+
+    res.status(200).json({
+        status: 'success',
+        data: []
+    });
+});
+
 exports.getCountIsExist = (Model, prop) => catchAsync( async (req, res, next) => {
 
     let isExist = false;
