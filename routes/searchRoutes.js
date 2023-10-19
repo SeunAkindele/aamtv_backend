@@ -9,7 +9,7 @@ router.use(authController.protect);
 
 router.get('/searchScreen', searchController.searchScreen);
 router.get('/recentSearch', searchController.recentSearch);
-router.get('/saveSearchedArtist', searchController.saveSearchedArtist);
-router.get('/saveSearchedVideo', searchController.saveSearchedVideo);
+router.post('/saveSearchedArtist', searchController.saveSearchedArtist);
+router.post('/saveSearchedVideo', searchController.saveSearchedVideo);
 
 module.exports = router;
