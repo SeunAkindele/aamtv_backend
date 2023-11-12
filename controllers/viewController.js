@@ -11,8 +11,6 @@ exports.setVideoUserIds = (req, res, next) => {
     next();
 }
 
-// exports.view = factory.createOne(View);
-
 exports.view =  catchAsync(async (req, res, next) => {
     
     const count = await View.countDocuments({video: req.params.id, user: req.user.id});
@@ -32,6 +30,33 @@ exports.view =  catchAsync(async (req, res, next) => {
 });
 
 exports.getViews = factory.getCountIsExist(View, "video");
+
+exports.updateWatchProgress = catchAsync( async (req, res, next) => {
+    const data = await View.findOneAndUpdate({video: req.body.video, user: req.body.user}, req.body, {
+        new: true,
+        runValidators: true
+    });
+
+    res.status(200).json({
+        status: 'success',
+        results: data.length,
+        data: {
+            data
+        }
+    });
+});
+ 
+exports.getWatchProgress = catchAsync( async (req, res, next) => {
+    const data = await View.findOne({video: req.body.video, user: req.body.user});
+
+    res.status(200).json({
+        status: 'success',
+        results: data.length,
+        data: {
+            data
+        }
+    });
+});
 
 exports.getTrendiest = catchAsync( async (req, res, next) => {
     const category =  req.params.category !== "all" ? {
@@ -87,3 +112,4 @@ exports.getTrendiest = catchAsync( async (req, res, next) => {
         }
     });
 });
+

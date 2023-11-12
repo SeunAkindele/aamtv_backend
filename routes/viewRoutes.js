@@ -9,6 +9,12 @@ router.use(authController.protect);
 
 router.get('/trendiest/:category', authController.restrictTo('artist', 'user'), viewController.getTrendiest);
 
+router.get('/progress/:id',
+    authController.restrictTo('artist', 'user'), 
+    viewController.setVideoUserIds, 
+    viewController.getWatchProgress
+)
+
 router.route('/:id')
     .post( 
         authController.restrictTo('artist', 'user'), 
@@ -19,6 +25,10 @@ router.route('/:id')
         authController.restrictTo('artist', 'user'), 
         viewController.setVideoUserIds, 
         viewController.getViews
+    ).patch( 
+        authController.restrictTo('artist', 'user'), 
+        viewController.setVideoUserIds, 
+        viewController.updateWatchProgress
     )
 
 module.exports = router;

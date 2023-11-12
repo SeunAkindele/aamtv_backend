@@ -241,7 +241,7 @@ exports.saveSearchedArtist = () => catchAsync( async (req, res, next) => {
 });
 
 exports.saveSearchedVideo = () => catchAsync( async (req, res, next) => {
-    console.log({video: req.body.video, user: req.user.id});
+    // console.log({video: req.body.video, user: req.user.id});
     const count = await Search.countDocuments({video: req.body.video, user: req.user.id});
            
     if(count < 1){

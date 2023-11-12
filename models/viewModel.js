@@ -12,6 +12,14 @@ viewSchema = new mongoose.Schema({
     video: {
         type: mongoose.Schema.ObjectId,
         ref: 'Video'
+    },
+    progress: {
+        type: Number,
+        default: 0
+    },
+    status: {
+        type: String,
+        default: 'not completed'
     }
 },
 {
