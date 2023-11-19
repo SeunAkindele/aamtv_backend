@@ -71,6 +71,12 @@ videoSchema.virtual('comments', {
     localField: '_id'
 });
 
+videoSchema.virtual(' views', {
+    ref: 'View',
+    foreignField: 'video',
+    localField: '_id'
+});
+
 // runs immediately after the document is saved
 videoSchema.post('save', function(doc, next) {
     this.populate({
