@@ -65,7 +65,7 @@ exports.getOne = Model => catchAsync(async (req, res, next) => {
     const data = await Model.findById(req.params.id);
      
      if(!data) {
-         return next(new AppError('Document not found', 404));
+        return next(new AppError('Document not found', 404));
      }
  
      res.status(200).json({

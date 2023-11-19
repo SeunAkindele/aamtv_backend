@@ -17,6 +17,10 @@ viewSchema = new mongoose.Schema({
         type: Number,
         default: 0
     },
+    roll: {
+        type: Number,
+        default: 0
+    },
     status: {
         type: String,
         default: 'not completed'

@@ -18,7 +18,7 @@ router.route('/:category')
         videoController.getVideos
     )
 
-router.route('/:id')
+router.route('/video/:id')
     .get(
         authController.protect, 
         videoController.getVideo
