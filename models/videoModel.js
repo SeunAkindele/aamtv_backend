@@ -71,7 +71,7 @@ videoSchema.virtual('comments', {
     localField: '_id'
 });
 
-videoSchema.virtual(' views', {
+videoSchema.virtual('views', {
     ref: 'View',
     foreignField: 'video',
     localField: '_id'
