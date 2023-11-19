@@ -41,10 +41,6 @@ const videoSchema = new mongoose.Schema({
         ref: 'User',
         required: [true, 'A video must belong to an artist']
     },
-    progress: {
-        type: Number,
-        default: 0
-    },
     createdAt: {
         type: Date,
         default: Date.now()
