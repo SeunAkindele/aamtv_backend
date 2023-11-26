@@ -9,9 +9,16 @@ router.use(authController.protect);
 
 router.get('/trendiest/:category', authController.restrictTo('artist', 'user'), viewController.getTrendiest);
 
+router.route('/continueToWatch')
+    .get(
+        authController.protect, 
+        viewController.setVideoUserIds,
+        viewController.getContinueToWatch
+    )
+
 router.get('/progress/:id',
     authController.restrictTo('artist', 'user'), 
-    viewController.setVideoUserIds, 
+    viewController.setVideoUserIds,
     viewController.getWatchProgress
 )
 

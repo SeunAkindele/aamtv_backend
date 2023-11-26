@@ -36,6 +36,10 @@ const videoSchema = new mongoose.Schema({
         type: mongoose.Schema.ObjectId,
         ref: 'Follower'
     },
+    duration: {
+        type: Number,
+        default: 0
+    },
     roll: {
         type: Number,
         default: 0

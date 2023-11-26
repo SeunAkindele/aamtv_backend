@@ -46,17 +46,17 @@ exports.createVideo = catchAsync(async (req, res, next) => {
     const videoUrl = await cloudinary.uploader.upload(
         `${__dirname}/../assets/videos/${req.body.src}`, 
         {
-        resource_type: 'video',
-        folder: 'aamtv/videos', // Optional: Specify a folder in your Cloudinary account
+            resource_type: 'video',
+            folder: 'aamtv/videos', // Optional: Specify a folder in your Cloudinary account
         },
         (error, result) => {
-        if (error) {
-            console.error('Error uploading video:', error);
-            return next(new AppError(`Kindly provide a valid video file`, 400));
-        } else {
-            console.log('Video uploaded successfully:', result.secure_url);
-            return result.secure_url;
-        }
+            if (error) {
+                console.error('Error uploading video:', error);
+                return next(new AppError(`Kindly provide a valid video file`, 400));
+            } else {
+                console.log('Video uploaded successfully:', result.secure_url);
+                return result.secure_url;
+            }
         }
     );
     

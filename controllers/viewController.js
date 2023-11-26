@@ -113,3 +113,25 @@ exports.getTrendiest = catchAsync( async (req, res, next) => {
     });
 });
 
+exports.getContinueToWatch = catchAsync( async (req, res, next) => {
+    const data = await View.find({status: 'not completed', user: req.body.user});
+
+    const arr = [];
+
+    await Promise.all(
+        data.map(async (item) => {
+            const video = await Video.findOne({_id: item.video});
+            const result = {video, progress: item.progress};
+            
+            arr.push(result);
+        })
+    );
+
+    res.status(200).json({
+        status: 'success',
+        results: arr.length,
+        data: {
+            data: arr
+        }
+    });
+})
