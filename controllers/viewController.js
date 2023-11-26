@@ -114,14 +114,18 @@ exports.getTrendiest = catchAsync( async (req, res, next) => {
 });
 
 exports.getContinueToWatch = catchAsync( async (req, res, next) => {
-    const data = await View.find({status: 'not completed', user: req.body.user});
+    const features = new APIFeatures(View.find({status: 'not completed', user: req.body.user}), req.query)
+    .lazyLoader()
+    .sortByTime();
 
+    const data = await features.query;
     const arr = [];
 
     await Promise.all(
         data.map(async (item) => {
             const video = await Video.findOne({_id: item.video});
-            const result = {video, progress: item.progress};
+            const progress = item.progress && video.duration ? item.progress / video.duration : 0;
+            const result = {video, progress};
             
             arr.push(result);
         })
