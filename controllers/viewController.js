@@ -32,7 +32,10 @@ exports.view =  catchAsync(async (req, res, next) => {
 exports.getViews = factory.getCountIsExist(View, "video");
 
 exports.updateWatchProgress = catchAsync( async (req, res, next) => {
-    const data = await View.findOneAndUpdate({video: req.body.video, user: req.body.user}, req.body);
+    const data = await View.findOneAndUpdate({video: req.body.video, user: req.body.user}, req.body, {
+        new: true,
+        runValidators: true
+    });
 
     res.status(200).json({
         status: 'success',
