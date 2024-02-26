@@ -60,8 +60,8 @@ exports.createVideo = catchAsync(async (req, res, next) => {
         }
     );
     
-    req.body.src = videoUrl.url;
-    req.body.photo = imageUrl;
+    req.body.src = videoUrl.url.replace(/^http:/, 'https:');
+    req.body.photo = imageUrl.replace(/^http:/, 'https:');
     
     const data = await Video.create(req.body);
     
